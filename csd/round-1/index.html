@@ -90,8 +90,6 @@
   .opt input { width: 22px; height: 22px; margin: 2px 0 0; flex-shrink: 0; accent-color: var(--ink); }
   .opt:has(input:checked) { background: var(--sand); border-color: var(--ink); }
   .opt:focus-within { outline: 2px solid var(--ink); outline-offset: 2px; }
-  .says ul { margin: 6px 0 4px 18px; padding: 0; }
-  .says li { margin: 4px 0; }
   ul.codes { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
   ul.codes li { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
   ul.codes a { font-weight: 600; }
@@ -242,8 +240,8 @@
 (function () {
   var PRIV = 'Only Altagether&rsquo;s survey team sees individual answers. Your captain does not, and the County never does.';
 
-  var WHY_NOW = 'The temporary rules the County put in place after the fire expire in the summer of 2027. The County is studying changes to the permanent rules. The group reviewing them finishes its recommendations in early January 2027. After that, residents can comment on a written draft at public workshops.';
-  var WHY_VOICE = 'Nothing is decided yet. These rules will impact homes differently from one block to the next, so the County will organize resident feedback by neighborhood. A deeper back yard matters on one street, a taller fence on another, and an average across Altadena hides that. Your answer is counted together with your neighbors&rsquo;, so the County sees what each part of Altadena wants. This is a great opportunity to make sure that the rules work for all lot sizes and residences.';
+  var WHY_NOW = 'The County is working through these rules this fall. The group reviewing them finishes its recommendations in early January 2027. After that, residents comment on a written draft at public workshops, which is harder than shaping it now. The temporary rules the County put in place after the fire expire in the summer of 2027.';
+  var WHY_VOICE = 'These rules land differently from one block to the next. A deeper back yard matters on one street, a taller fence on another, and an average across Altadena hides that. Your answer is counted together with your neighbors&rsquo;, so the County sees what each part of Altadena wants. Nothing is decided yet.';
 
   var MUNI = 'https://library.municode.com/ca/los_angeles_county/codes/code_of_ordinances?nodeId=';
   var CODE = {
@@ -269,21 +267,21 @@
   ];
 
   var TOPICS = [
-    { key: 'yards', name: 'Yards', title: 'How far a house is from the street and the neighbors&rsquo; houses', cite: '&sect;22.320.090.D.1.a',
-      today: '<ul><li>The minimum distance between the street and a house is 20 feet. This distance is what we know as the front yard.</li><li>To keep neighborhoods consistent, the house with the smallest front yard of 20 feet or more sets the minimum for that block. For example, if the neighbor closest to the street is 22 feet from it, their house sets the minimum distance from the street for everyone else.</li><li>On most lots in Altadena, the back yard is 25 ft. On lots of 20,000 sq ft or more, it is 35 ft.</li><li>Side yards are 10% of the lot&rsquo;s width, but they need to be at least 5 ft.</li></ul>',
-      county: 'Use the same numbers on every lot, like the rest of the County does: 20 ft in front, 5 ft on interior sides (the sides between houses), 15 ft in back, and 10 ft on the street side of some corner lots.',
-      means: 'The front yard would no longer depend on the other houses on your side of the block. Example: on an ordinary 60 ft wide lot, the back yard could be 10 ft shallower and each side yard 1 ft narrower than allowed today (see the images below). Larger lots would change more: on lots of 20,000 sq ft or more the back yard could be 20 ft shallower, and wider lots would lose more at the sides.',
+    { key: 'yards', name: 'Yards', title: 'How far a house sits from the street and the neighbors', cite: '&sect;22.320.090.D.1.a',
+      today: 'Your front yard must be at least as deep as the smallest front yard on your side of the block, and never less than 20 ft. The back yard is 25 ft on most lots, 35 ft on lots of 20,000 sq ft or more. Side yards are 10% of the lot&rsquo;s width, at least 5 ft.',
+      county: 'Use the same numbers on every lot, as the rest of the County does: 20 ft in front, 5 ft on interior sides, 15 ft in back, and 10 ft on the street side of some corner lots.',
+      means: 'On an ordinary 60 ft wide lot, the back yard could be 10 ft shallower and each side yard 1 ft narrower. Larger lots would change more: on lots of 20,000 sq ft or more the back yard could be 20 ft shallower, and wider lots would lose more at the sides. The front yard would no longer depend on the other houses on your side of the block.',
       figure: 'yards',
       links: [['Altadena&rsquo;s yard rule', 'csd', '&sect;22.320.090.D.1.a'], ['The countywide yard rule', 'zones', '&sect;22.18.040, part C'], ['The temporary rules for rebuilding after the fire', 'fire', 'Chapter 22.258']],
-      deeper: [['The temporary rule, and August 2027', 'After the fire the County temporarily changed Altadena&rsquo;s front-yard rule for rebuilds by making it a flat 20 ft minimum. That temporary rule expires in the summer of 2027.'],
-               ['What the County has not proposed changing', 'The County has not proposed changing the limit on how big a house can be, nor has it proposed changing the rule that nothing taller than 23 ft may stand within 15 ft of a property line. We are confirming both with the County.']],
+      deeper: [['The temporary rule, and August 2027', 'After the fire the County suspended Altadena&rsquo;s front-yard rule for rebuilds and set a flat 20 ft minimum. That temporary rule expires in the summer of 2027.'],
+               ['What the County has not proposed changing', 'The County has not proposed changing the limit on how big a house can be, or the rule that nothing taller than 23 ft may stand within 15 ft of a property line. We are confirming both with the County.']],
       q: 'Do you agree with the County&rsquo;s change to yards?',
       opts: [['agree', 'Agree'], ['disagree', 'Disagree'], ['unsure', 'Not sure']],
       parts: ['Front yard', 'Side yards', 'Back yard'], prompt: 'Which part do you disagree with, and why?' },
     { key: 'height', name: 'Height', title: 'How tall a house can be', cite: '&sect;22.320.090.D.1.b',
-      today: '<ul><li>For most properties in Altadena, a house can be up to 30 ft tall. This applies to lots under 20,000 sq ft, which is most lots, and to flag lots (lots with a narrow opening at the street that leads to the lot itself).</li><li>On lots larger than 20,000 sq ft, the maximum height is 35 ft.</li></ul>',
-      county: 'Allow 35 ft on every lot, just like the rest of the County does.',
-      means: 'On most Altadena lots, a house could be 5 ft taller than it is today.',
+      today: 'A house can be up to 30 ft tall on lots under 20,000 sq ft, which is most lots, and on flag lots. On larger lots, 35 ft.',
+      county: 'Allow 35 ft on every lot, as the rest of the County does.',
+      means: 'On most Altadena lots a house could be 5 ft taller than today.',
       figure: { a: ['30 ft', 'Most lots today', 90], b: ['35 ft', 'County&rsquo;s change', 105] },
       links: [['Altadena&rsquo;s height rule', 'csd', '&sect;22.320.090.D.1.b'], ['The countywide height rule', 'zones', '&sect;22.18.040, part D']],
       deeper: [['What the County has not proposed changing', 'The County has not proposed changing the two-story limit, or the rule that nothing taller than 23 ft may stand within 15 ft of a property line. We are confirming both with the County.']],
@@ -291,18 +289,18 @@
       opts: [['agree', 'Agree'], ['disagree', 'Disagree'], ['unsure', 'Not sure']],
       prompt: 'Why do you disagree?' },
     { key: 'fences', name: 'Fences', title: 'Fences and hedges at the front of a lot', cite: '&sect;22.320.090.D.1.c',
-      today: 'These rules cover the first 10 ft of a lot, measured back from the edge of the public right-of-way. In that area:<ul><li>hedges can be no more than 42 inches tall;</li><li>on a corner lot, the 42 inch limit applies to walls and fences too;</li><li>on other lots, a fence or wall can be 6 ft tall as long as you can see through it and it is not next to a driveway.</li></ul>Further back than 10 ft, 6 ft is already allowed.',
-      county: 'Removing the 42 inch limits in front yards and in the corner yards of corner lots, and allowing fences and hedges up to 72 inches (6 ft). The rules beside driveways stay. The County has not said whether a tall fence would still have to be see-through.',
-      means: 'In the first 10 ft of a lot, hedges and fences up to 6 ft would be allowed (on corner lots too). Beside driveways the limit would stay at 42 inches.',
+      today: 'These rules cover the first 10 ft of a lot, measured back from the edge of the public right-of-way. There, hedges can be 42 inches tall. On corner lots, fences and walls are limited to 42 inches too. On other lots, a fence or wall can reach 6 ft if you can see through it, except beside a driveway. Further back than 10 ft, 6 ft is already allowed.',
+      county: 'Remove the 42 inch limits in front yards and in the corner yards of corner lots, and allow fences and hedges up to 72 inches (6 ft). The rules beside driveways stay. The County has not said whether a tall fence would still have to be see-through.',
+      means: 'In the first 10 ft of a lot, hedges and fences up to 6 ft would be allowed, on corner lots too. Beside driveways the limit would stay at 42 inches.',
       figure: { a: ['42 in.', 'Hedges, and fences on corner lots, today', 49], b: ['72 in.', 'County&rsquo;s change', 84], note: 'To scale with each other. In the first 10 ft of a lot. On lots that are not on a corner, a see-through fence can already be 6 ft.' },
       links: [['Altadena&rsquo;s fence and hedge rule', 'csd', '&sect;22.320.090.D.1.c'], ['The countywide fence rule', 'site', '&sect;22.110.070']],
-      deeper: [['Beside the driveway', 'Fences stay low in the triangle next to a driveway, so drivers backing out can see the street and pedestrians approaching the driveway.']],
+      deeper: [['Beside the driveway', 'Fences stay low in the triangle next to a driveway, so drivers backing out can see the street.']],
       q: 'Do you agree with the County&rsquo;s change to fences and hedges?',
       opts: [['agree', 'Agree'], ['disagree', 'Disagree'], ['unsure', 'Not sure']],
       prompt: 'Why do you disagree?' },
-    { key: 'parking', name: 'Parking', title: 'The number of parking spaces a house must have', cite: '&sect;22.320.090.D.1.e',
-      today: 'The number of parking spaces depends on the number of bedrooms:<ul><li>2 spaces for a house with one to four bedrooms;</li><li>3 spaces for five or six bedrooms, and more above that;</li><li>when a house needs 3 or more spaces, they can all be open-air, one behind the other.</li></ul>',
-      county: 'Requiring two covered spaces for every house, however many bedrooms it has, as the rest of the County does. Under the countywide rule, a home on a lot of one acre or more is not required to have parking.',
+    { key: 'parking', name: 'Parking', title: 'Parking spaces a house must have', cite: '&sect;22.320.090.D.1.e',
+      today: 'The number depends on bedrooms: 2 spaces for a house with 1 to 4 bedrooms, 3 for 5 or 6 bedrooms, and more above that. When a house needs 3 or more spaces, they can all be open-air, one behind the other.',
+      county: 'Two covered spaces for every house, however many bedrooms it has, as the rest of the County does. Under the countywide rule, a home on a lot of one acre or more is not required to have parking.',
       means: 'A house with five or more bedrooms would need fewer spaces than today, but both would have to be covered. For smaller houses the number stays at two. We are confirming with the County whether those two have to be covered today.',
       links: [['Altadena&rsquo;s parking rule', 'csd', '&sect;22.320.090.D.1.e'], ['The countywide parking rule', 'parking', '&sect;22.112.070'], ['Countywide exemption for lots of one acre or more', 'exempt', '&sect;22.112.030, part B']],
       deeper: [],
@@ -311,10 +309,6 @@
       prompt: 'Why do you disagree?' }
   ];
 
-  var SITUATIONS = [
-    ['I own a home in Altadena, and&hellip;', ['I am rebuilding', 'I have rebuilt and I am back', 'My home is standing, and I live in it', 'I am displaced, and plan to return', 'I am displaced, and not sure']],
-    ['I am a renter in Altadena, and&hellip;', ['My home is standing and I am home', 'My home is standing and I am displaced', 'My home was lost, and I plan to return', 'My home was lost, and I am not sure what will happen']]
-  ];
   var STEPS = ['start', 'yards', 'height', 'fences', 'parking', 'most', 'design', 'you', 'send', 'done'];
   var LAST_Q = STEPS.indexOf('send');
   var state = { step: 0, ans: {}, parts: {}, notes: {}, rank: [], design: '', other: '', zone: '', cross: '', displaced: false, situation: '', talked: '', contact: '', err: '' };
@@ -325,7 +319,7 @@
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
   function head() {
     return '<div class="head"><img class="logo" src="altagether-logo.png" alt="Altagether" width="512" height="150"><div class="kicker">Neighborhood Input &middot; Round 1</div>' +
-      '<h1>Four Altadena building rules that the County may change</h1></div>';
+      '<h1>Four Altadena building rules the County may change</h1></div>';
   }
   function progress() {
     var i = state.step, n = LAST_Q;
@@ -421,7 +415,7 @@
         '<div class="zonebox"><div><div class="small">From your captain&rsquo;s link</div><div style="font-weight:700">Zone 129 &middot; Morada Pl</div></div><span class="small">Not your zone?</span></div>' +
         '<label class="opt" style="margin-top:8px"><input type="checkbox" id="displaced"' + (state.displaced ? ' checked' : '') + '><span>I lived in Altadena before the fire and don&rsquo;t now. Use where I lived.</span></label>' +
         '<div class="q"><div class="lbl">Your situation <span class="small" style="font-weight:400">(optional)</span></div>' +
-        SITUATIONS.map(function (g) { return '<div class="small" style="margin:8px 0 4px;font-weight:600">' + g[0] + '</div>' + g[1].map(function (v) { return '<label class="opt"><input type="radio" name="situation" value="' + v + '"' + (state.situation === v ? ' checked' : '') + '><span>' + v + '</span></label>'; }).join(''); }).join('') + '</div>' +
+        ['Rebuilding', 'Rebuilt and back', 'Home is standing', 'Renting here', 'Displaced, plan to return', 'Displaced, not sure'].map(function (v) { return '<label class="opt"><input type="radio" name="situation" value="' + v + '"' + (state.situation === v ? ' checked' : '') + '><span>' + v + '</span></label>'; }).join('') + '</div>' +
         '<div class="q"><div class="lbl">Did you talk about this with neighbors first?</div>' +
         ['Yes, at a block gathering', 'Yes, informally', 'No'].map(function (v) { return '<label class="opt"><input type="radio" name="talked" value="' + v + '"' + (state.talked === v ? ' checked' : '') + '><span>' + v + '</span></label>'; }).join('') + '</div></section>' + nav('Continue');
     } else if (s === 'send') {
@@ -478,7 +472,7 @@
   function captain() {
     var picked = !!czone, url = BASE + '?zone=' + czone, qr = picked ? qrSvg(url) : '';
     return '<div class="head"><img class="logo" src="altagether-logo.png" alt="Altagether" width="512" height="150"><div class="kicker">For block captains &middot; Round 1 of 3</div><h1>Help your block weigh in on Altadena&rsquo;s building rules</h1></div>' +
-      '<section><p class="lead">LA County is updating the building rules that are particular to Altadena (the Community Standards District, or CSD). The County created a committee with representatives from Altadena organizations to do this work, and Altagether has a seat at the table. We want to use this opportunity to connect with as many neighbors as possible.</p>' +
+      '<section><p class="lead">LA County is updating the building rules that are particular to Altadena. Altagether has a seat at the table, and the County has asked the organizations there to bring back what their communities think.</p>' +
       '<p>This first round covers four rules for single-family homes: <b>yards, house height, front fences and parking.</b> The County has said what it is considering for each. Neighbors answer a short survey, and the results go to the County zone by zone, so it can see where blocks differ.</p>' +
       '<p>You are how your block hears about it.</p></section>' +
       '<section><h2>What we&rsquo;re asking of you</h2><ol class="steps"><li><b>Send your zone&rsquo;s link</b> to your neighbors on October 2.</li><li><b>Remind them once,</b> around October 8.</li><li><b>Pass on the results</b> when we send them, after October 15.</li></ol>' +
@@ -495,7 +489,7 @@
       '<section><h2>The rules themselves</h2><p>For you, and for any neighbor who wants the legal text. Each opens in a new tab. The same links are on the survey page.</p>' + codeList(ALLCODE) + '</section>' +
       '<section><h2>When someone asks who sees this</h2><ul class="plain"><li>Answers go to Altagether. I don&rsquo;t see them.</li><li>The County gets counts by zone, never names.</li><li>Your email or number is kept separately and deleted after the results are sent back.</li></ul></section>' +
       '<section><h2>A neighbor without a phone</h2><p>Hand them yours and step away while they answer. Or give them the Altagether number, and someone who is not their captain will enter it with them.</p><p class="small">Number to come.</p></section>' +
-      (!picked ? '' : '<section><h2>Card to print</h2><div class="cardprev"><div><b>Four Altadena building rules that the County may change</b><div class="small" style="margin-top:6px">5 minutes &middot; closes Oct 12 &middot; ' + ZONES[czone] + '</div></div><div class="qr">' + qr + '</div></div></section>');
+      (!picked ? '' : '<section><h2>Card to print</h2><div class="cardprev"><div><b>Four Altadena building rules the County may change</b><div class="small" style="margin-top:6px">5 minutes &middot; closes Oct 12 &middot; ' + ZONES[czone] + '</div></div><div class="qr">' + qr + '</div></div></section>');
   }
 
   // ---------- Invented numbers for the two reports ----------
@@ -557,7 +551,7 @@
       '<section><h2>6 &middot; Why people disagreed</h2><p class="small">People who disagreed were asked why. Their reasons, and the open comments, were read by two people and grouped into themes. No comment is quoted. The last two themes concern rules the County did not list.</p><div class="tscroll"><table><thead><tr><th>Theme</th><th class="num">Comments</th></tr></thead><tbody>' +
       THEMES.map(function (r) { return '<tr><td>' + r[0] + '</td><td class="num">' + r[1] + '</td></tr>'; }).join('') + '</tbody></table></div></section>' +
       '<section><h2>7 &middot; Who answered</h2><div class="tscroll"><table><thead><tr><th>Situation</th><th class="num">People</th><th class="num">Share</th></tr></thead><tbody>' +
-      [['Owner, rebuilding', 58], ['Owner, home standing', 49], ['Owner, displaced', 27], ['Owner, rebuilt and back', 14], ['Renter', 12], ['Displaced, not sure', 9], ['Did not say', 12]].map(function (r) { return '<tr><td>' + r[0] + '</td><td class="num">' + r[1] + '</td><td class="num">' + pct(r[1], N) + '%</td></tr>'; }).join('') + '</tbody></table></div>' +
+      [['Rebuilding', 58], ['Home is standing', 49], ['Displaced, plan to return', 27], ['Rebuilt and back', 14], ['Renting here', 12], ['Displaced, not sure', 9], ['Did not say', 12]].map(function (r) { return '<tr><td>' + r[0] + '</td><td class="num">' + r[1] + '</td><td class="num">' + pct(r[1], N) + '%</td></tr>'; }).join('') + '</tbody></table></div>' +
       '<h3>Where answers came from</h3><div class="tscroll"><table><thead><tr><th>Area</th><th class="num">Share of answers</th><th class="num">Share of households</th></tr></thead><tbody><tr><td>West of Lake Ave</td><td class="num">31%</td><td class="num">44%</td></tr><tr><td>East of Lake Ave</td><td class="num">69%</td><td class="num">56%</td></tr></tbody></table></div><p class="small" style="margin-top:8px">West Altadena is under-represented in this round. Read the totals with that in mind.</p></section>' +
       '<section><h2>8 &middot; How this was done, and its limits</h2><div class="tscroll"><table><tbody>' +
       [['Answers received', '203'], ['Repeat answers from the same person, latest kept', '17'], ['Answers with no usable email or number, set aside', '5'], ['Answers counted', String(N)], ['Entered with help, by someone other than the zone&rsquo;s captain', '6'], ['Groups of near-identical answers flagged', '1 group of 4. Counted, and noted here']].map(function (r) { return '<tr><td>' + r[0] + '</td><td class="num">' + r[1] + '</td></tr>'; }).join('') + '</tbody></table></div>' +
@@ -656,9 +650,9 @@
   });
 
   // Plain-text export of every line a resident would read, for editing elsewhere.
-  function plain(html) { var d = document.createElement('div'); d.innerHTML = html.replace(/<li>/g, '\n  - ').replace(/<\/ul>/g, '\n'); return d.textContent.replace(/\n{3,}/g, '\n\n').trim(); }
+  function plain(html) { var d = document.createElement('div'); d.innerHTML = html; return d.textContent; }
   function wording() {
-    var out = ['ALTADENA THEME 1 ROUND. DRAFT WORDING, ' + 'September 30, 2026', '', 'TITLE', 'Four Altadena building rules that the County may change', '', 'WHY NOW', plain(WHY_NOW), '', 'WHY YOUR VOICE MATTERS', plain(WHY_VOICE), ''];
+    var out = ['ALTADENA THEME 1 ROUND. DRAFT WORDING, ' + 'September 27, 2026', '', 'TITLE', 'Four Altadena building rules the County may change', '', 'WHY NOW', plain(WHY_NOW), '', 'WHY YOUR VOICE MATTERS', plain(WHY_VOICE), ''];
     TOPICS.forEach(function (t, i) {
       out.push('RULE ' + (i + 1) + ': ' + t.name.toUpperCase(), 'Heading: ' + plain(t.title), 'Today: ' + plain(t.today), 'County is considering: ' + plain(t.county), 'What it means: ' + plain(t.means));
       t.deeper.forEach(function (d) { out.push('Go deeper, ' + plain(d[0]) + ': ' + plain(d[1])); });
@@ -666,7 +660,6 @@
       t.opts.forEach(function (o) { out.push('  - ' + plain(o[1])); });
       out.push('');
     });
-    SITUATIONS.forEach(function (g) { out.push('YOUR SITUATION (optional): ' + plain(g[0])); g[1].forEach(function (v) { out.push('  - ' + v); }); out.push(''); });
     out.push('ACROSS THE FOUR', 'Which of these matters most on your block?', '', 'IN YOUR OWN WORDS', 'Is anything in the design rules getting in the way of rebuilding?', 'Anything else the County should know about your block?', '', 'PRIVACY', plain(PRIV));
     return out.join('\n');
   }
