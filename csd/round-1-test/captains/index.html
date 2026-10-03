@@ -37,6 +37,7 @@
   main.wide { max-width: 860px; }
   .head { padding: 20px 0 16px; border-bottom: 2px solid var(--ink); }
   .logo { display: block; height: 44px; width: auto; margin-bottom: 14px; }
+  .logo.mini { height: 30px; margin: 20px 0 0; }
   .kicker { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); }
   h1 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 8vw, 36px); line-height: 1.14; margin: 6px 0 0; text-wrap: balance; }
   h2 { font-family: var(--figure); font-weight: 600; font-size: 22px; line-height: 1.25; margin: 0 0 10px; text-wrap: balance; }
@@ -348,7 +349,7 @@
   }
   function progress() {
     var i = state.step, n = LAST_Q;
-    return '<div class="progress"><div class="lbl"><span>Step ' + i + ' of ' + n + '</span><span>' + (i <= 4 ? 'The four rules' : 'About you') + '</span></div><div class="track"><i style="width:' + Math.round(i / n * 100) + '%"></i></div></div>';
+    return '<img class="logo mini" src="altagether-logo.png" alt="Altagether" width="512" height="150"><div class="progress"><div class="lbl"><span>Step ' + i + ' of ' + n + '</span><span>' + (i <= 4 ? 'The four rules' : 'About you') + '</span></div><div class="track"><i style="width:' + Math.round(i / n * 100) + '%"></i></div></div>';
   }
   function nav(next, noBack) {
     return '<div class="nav">' + (noBack ? '' : '<button type="button" class="btn back" data-go="-1">Back</button>') + '<button type="button" class="btn" data-go="1">' + next + '</button></div>';
@@ -493,7 +494,7 @@
       if (state.situation) rows.push(['Situation', state.situation]);
       rows.push(['Came through', viaTag() === 'captain' ? 'Your captain&rsquo;s link' : viaTag() === 'open' ? 'The open link' : 'Partner link: ' + viaTag()]);
       rows.push(['Contact', 'Kept separately']);
-      h = '<section style="padding-top:28px"><h1 style="font-size:30px">Your answers are in.</h1><ul class="tally">' + rows.map(function (r) { return '<li><span>' + r[0] + '</span><span class="a">' + r[1] + '</span></li>'; }).join('') + '</ul>' +
+      h = '<section style="padding-top:20px"><img class="logo" src="altagether-logo.png" alt="Altagether" width="512" height="150"><h1 style="font-size:30px">Your answers are in.</h1><ul class="tally">' + rows.map(function (r) { return '<li><span>' + r[0] + '</span><span class="a">' + r[1] + '</span></li>'; }).join('') + '</ul>' +
         '<p style="margin-top:16px"><b>Changed your mind?</b> Come back to this page any time before Oct 12 and send again. We keep your latest answers only.</p>' +
         '<div class="rows"><div class="row"><b>Oct 12</b><span>Round closes</span></div><div class="row"><b>Oct 15</b><span>Zone-by-zone results go to the County&rsquo;s focus group, and to you</span></div><div class="row"><b>Oct 17</b><span>LA County Planning holds an Altadena listening session on land use and zoning, at The Collaboratory, 540 W Woodbury Rd. Open to everyone. <a href="https://planning.lacounty.gov/blog/altadena-listening-session/" target="_blank" rel="noopener">Details</a></span></div><div class="row"><b>2027</b><span>LA County Planning publishes a public draft and opens it for comment</span></div></div>' +
         '<div class="test"><b>This is a test run</b><div class="small" style="color:#3a3833;margin-top:6px">We are trying a new way of gathering input, block by block. Some of it will be rough. Afterward we will tell you how many people took part, zone by zone, what the County did with it, and what we would do differently.</div></div></section>' +
