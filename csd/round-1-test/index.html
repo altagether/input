@@ -489,7 +489,6 @@
         ((ZONES[linkZone()] && !state.pickZone)
           ? '<div class="zonebox"><div><div class="small">From your captain&rsquo;s link</div><div style="font-weight:700">' + ZONES[linkZone()] + '</div></div><button type="button" class="linkbtn" data-pickzone="1">Not your zone?</button></div>'
           : '<div class="q" style="margin-top:0"><label for="zonepick">Your zone</label><div class="zwrap"><select id="zonepick"><option value=""' + (state.zone ? '' : ' selected') + '>Choose your zone&hellip;</option>' + Object.keys(ZONES).map(function (z) { return '<option value="' + z + '"' + (z === state.zone ? ' selected' : '') + '>' + ZONES[z] + '</option>'; }).join('') + '<option value="unsure"' + (state.zone === 'unsure' ? ' selected' : '') + '>Not sure which zone</option></select><span class="zarrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></div><p class="small" style="margin-top:6px">Your captain&rsquo;s link fills this in. If you came another way, pick the zone you live in, or lived in before the fire.</p>' + (state.zone === 'unsure' ? '<label for="cross" style="display:block;font-weight:700;margin:12px 0 6px">Your nearest cross streets</label><input type="text" id="cross" placeholder="for example, Lake and Mariposa" value="' + esc(state.cross) + '"><p class="small" style="margin-top:6px">We use this to place your answer in a zone. It is not kept with your name.</p>' : '') + '</div>') +
-        '<label class="opt" style="margin-top:8px"><input type="checkbox" id="displaced"' + (state.displaced ? ' checked' : '') + '><span>I lived in Altadena before the fire and don&rsquo;t now. Use where I lived.</span></label>' +
         '<div class="q"><div class="lbl">Owner or renter <span class="small" style="font-weight:400">(optional)</span></div><div class="picks">' +
         TENURE.map(function (t) { return '<label class="pick"><input type="radio" name="tenure" value="' + t[0] + '"' + (state.tenure === t[0] ? ' checked' : '') + '><span>' + t[1] + '</span></label>'; }).join('') + '</div></div>' +
         '<div class="q"><div class="lbl">My home <span class="small" style="font-weight:400">(optional)</span></div>' +
@@ -510,7 +509,7 @@
       });
       if (state.rank.length) rows.push(['Matters most', state.rank.map(function (k) { return TOPICS.filter(function (t) { return t.key === k; })[0].name; }).join(', ')]);
       if (state.design.trim() || state.other.trim() || state.mostNote.trim()) rows.push(['Written comments', 'Recorded, themes only']);
-      rows.push(['Counted for', zoneLabel() + (state.displaced ? ', where you lived' : '')]);
+      rows.push(['Counted for', zoneLabel() + (isDisplaced() ? ', where you lived' : '')]);
       if (state.tenure || state.situation) rows.push(['Situation', [state.tenure, state.situation].filter(Boolean).join(' \u00b7 ')]);
       rows.push(['Came through', viaTag() === 'captain' ? 'Your captain&rsquo;s link' : viaTag() === 'open' ? 'The open link' : 'Partner link: ' + viaTag()]);
       rows.push(['Contact', 'Kept separately']);
@@ -525,12 +524,13 @@
 
   function linkZone() { return LINK_ZONE; }
   function viaTag() { return PARAMS.get('via') || (LINK_ZONE ? 'captain' : 'open'); }
+  function isDisplaced() { return /elsewhere/.test(state.situation); }
   function zoneValue() { if (state.zone === 'unsure') return state.cross.trim() ? 'unsure: ' + state.cross.trim() : ''; return state.zone || (ZONES[linkZone()] ? linkZone() : ''); }
   function zoneLabel() { var z = zoneValue(); return z.indexOf('unsure') === 0 ? 'Your cross streets, to be placed in a zone by us' : (ZONES[z] || 'Zone ' + z); }
   function submitAnswers() {
     var d = new URLSearchParams();
     function put(k, v) { if (ENTRY[k]) d.set(ENTRY[k], v == null ? '' : String(v)); }
-    put('zone', zoneValue()); put('via', viaTag()); put('displaced', state.displaced ? 'Yes' : 'No'); put('situation', [state.tenure, state.situation].filter(Boolean).map(canon).join(' · '));
+    put('zone', zoneValue()); put('via', viaTag()); put('displaced', /elsewhere/.test(canon(state.situation)) ? 'Yes' : 'No'); put('situation', [state.tenure, state.situation].filter(Boolean).map(canon).join(' · '));
     TOPICS.forEach(function (t) { var a = state.ans[t.key] || ''; put(t.key, a ? canon(LABEL[t.key][a] || a) : ''); put(t.key + '_note', (state.notes[t.key] || '').trim()); if (t.parts) put(t.key + '_parts', (state.parts[t.key] || []).map(canon).join('; ')); });
     put('rank', state.rank.join(' > ')); put('most_note', state.mostNote.trim()); put('design', state.design.trim()); put('other', state.other.trim()); put('talked', canon(state.talked)); put('contact', state.contact.trim());
     if (DEMO) return Promise.resolve();
