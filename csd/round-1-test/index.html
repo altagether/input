@@ -428,7 +428,7 @@
     h += '<details><summary>Read the rule itself</summary><div><p>The legal text, on the County&rsquo;s code website. Opens in a new tab.</p>' + codeList(t.links.map(function (l) { return [l[0], CODE[l[1]], l[2]]; })) + '</div></details>';
     h += '<div class="vote"><div class="vote-tag">Your answer</div><div class="vote-body"><div class="lbl">' + t.q + '</div><div class="picks">';
     t.opts.forEach(function (o) {
-      h += '<label class="pick ' + o[0] + '"><input type="radio" name="a-' + t.key + '" value="' + o[0] + '"' + (a === o[0] ? ' checked' : '') + '><span class="in">' + ICON[o[0]] + '<span>' + o[1] + '</span></span></label>';
+      h += '<label class="pick ' + o[0] + '"><input type="radio" name="a-' + t.key + '" value="' + o[0] + '"' + (a === o[0] ? ' checked' : '') + '><span class="in">' + (o[0] === 'unsure' ? '' : ICON[o[0]]) + '<span>' + o[1] + '</span></span></label>';
     });
     h += '</div>';
     t.opts.forEach(function (o) {
