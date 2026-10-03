@@ -644,8 +644,9 @@
   }
   function captainSubject() { return 'Five minutes for our block: four Altadena building rules may change'; }
   function captainMsg(url) {
-    return 'Hi neighbors. LA County Planning has proposed changes to four Altadena building rules: yards, house height, front fences, and parking. Altagether is collecting what each block thinks and taking it to the County on October 15.\n\nThis is Round 1 of 3. Each round covers a different set of rules, and you can take part in any of them. Round 2 opens October 29 and Round 3 opens December 3.\n\nRound 1 takes about 5 minutes and closes October 12:\nhttps://' + url + '\n\nI won’t see anyone’s answers, and the County never does. Only Altagether’s survey team sees individual answers.';
+    return 'Hi neighbors.\n\nLA County Planning has proposed changes to four Altadena building rules. Altagether is collecting what each block thinks and sharing it with the County. This is Round 1 of 3. Each round covers a different set of rules, and you can take part in any of them.\n\nRound 1: Yards, house height, front fences, and parking.\nhttps://' + url + '\n\nThe survey takes about 5 minutes and closes October 12.';
   }
+
   function captain() {
     var picked = !!czone, url = BASE + '?zone=' + czone, qr = picked ? qrSvg(url) : '';
     return '<div class="head"><img class="logo" src="altagether-logo.png" alt="Altagether" width="512" height="150"><div class="kicker">For block captains &middot; Round 1 of 3</div><h1>Help your block weigh in on Altadena&rsquo;s building rules</h1></div>' +
