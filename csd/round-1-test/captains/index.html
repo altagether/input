@@ -644,7 +644,7 @@
   }
   function captainSubject() { return '5 min survey \u2013 Altadena building rules may change'; }
   function captainMsgHtml(url) {
-    return 'Hi neighbors.<br><br>LA County Planning has proposed changes to four Altadena building rules. Altagether is collecting what each block thinks and sharing it with the County. This is Round 1 of 3. Each round covers a different set of rules, and you can take part in any of them.<br><br><b>Round 1 &ndash; Yards, house height, front fences, and parking:</b><br>https://' + url + '<br><br>The survey takes about 5 minutes and <b>closes October 12</b>.';
+    return 'Hi neighbors,<br><br>LA County Planning has proposed changes to four Altadena building rules. Altagether is collecting what each block thinks and sharing it with the County. This is Round 1 of 3. Each round covers a different set of rules, and you can take part in any of them.<br><br><b>Round 1 &ndash; Yards, house height, front fences, and parking:</b><br>https://' + url + '<br><br>The survey takes about 5 minutes and <b>closes October 12</b>.';
   }
   function captainMsg(url) { var d = document.createElement('div'); d.innerHTML = captainMsgHtml(url).replace(/<br>/g, '\n'); return d.textContent; }
 
