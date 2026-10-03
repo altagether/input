@@ -131,13 +131,12 @@
   .vote-body { padding: 16px 16px 18px; }
   .vote .lbl { font-family: var(--figure); font-weight: 600; font-size: 20px; line-height: 1.25; margin-bottom: 14px; text-wrap: balance; }
   .vote .picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
-  .vote .pick { position: relative; display: flex; align-items: center; justify-content: center; box-sizing: border-box; height: auto; min-height: 54px; margin: 0; padding: 8px 6px; font-size: 16.5px; font-weight: 600; line-height: 1.15; text-align: center; border: 1.5px solid var(--field-line); border-radius: 6px; }
+  .vote .pick { position: relative; display: flex; align-items: center; justify-content: center; box-sizing: border-box; height: 54px; min-height: 0; margin: 0; padding: 0 4px; font-size: 16.5px; font-weight: 600; line-height: 1; border: 1.5px solid var(--field-line); border-radius: 6px; }
   .vote .pick input { position: absolute; top: 0; left: 0; width: 1px; height: 1px; margin: 0; padding: 0; opacity: 0; pointer-events: none; -webkit-appearance: none; appearance: none; }
-  .vote .pick .in { display: flex; align-items: center; justify-content: center; gap: 7px; line-height: 1.15; transform: translateX(-1.5px); min-width: 0; }
-  .vote .pick .in > span { display: block; line-height: 1.15; overflow-wrap: anywhere; }
+  .vote .pick .in { display: flex; align-items: center; justify-content: center; gap: 7px; line-height: 1; transform: translateX(-1.5px); }
+  .vote .pick .in > span { display: block; line-height: 1; }
   .vote .pick .ic { height: 14px; width: auto; flex: none; display: block; }
   @media (max-width: 430px) { .vote .pick { font-size: 15px; } .vote .pick .ic { height: 12px; } .vote .pick .in { gap: 5px; } .vote-body { padding-inline: 12px; } }
-  @media (max-width: 380px) { .vote .picks { grid-template-columns: 1fr; } .vote .pick { min-height: 48px; } }
   .vote .pick.agree .ic { color: #2e7d3a; } .vote .pick.disagree .ic { color: #b3261e; } .vote .pick.unsure .ic { color: var(--soft); }
   .vote .pick.agree:has(input:checked) { background: #e7f3e7; border-color: #2e7d3a; color: #1d5426; }
   .vote .pick.disagree:has(input:checked) { background: #fbeae8; border-color: #b3261e; color: #8c1d18; }
@@ -258,6 +257,10 @@
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
   [hidden] { display: none !important; }
+  .vote .pick { height: auto; min-height: 54px; padding: 8px 6px; line-height: 1.15; text-align: center; }
+  .vote .pick .in { line-height: 1.15; min-width: 0; }
+  .vote .pick .in > span { line-height: 1.15; overflow-wrap: anywhere; }
+  @media (max-width: 380px) { .vote .picks { grid-template-columns: 1fr; } .vote .pick { min-height: 48px; } }
   #copyout { width: 100%; min-height: 200px; margin-top: 10px; font-size: 14px; }
 </style>
 
