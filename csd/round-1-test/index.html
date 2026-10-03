@@ -354,6 +354,8 @@
   var STEPS = ['start', 'yards', 'height', 'fences', 'parking', 'most', 'design', 'you', 'send', 'done'];
   var LAST_Q = STEPS.indexOf('send');
   var PARAMS = new URLSearchParams(location.search), LINK_ZONE = PARAMS.get('zone') || '';
+  var LANG_LINK = 'es/', LANG_LABEL = 'Esta encuesta en espa\u00f1ol', CANON = {};
+  function canon(v) { return CANON[v] || v; }
   var state = { step: 0, ans: {}, parts: {}, notes: {}, rank: [], design: '', other: '', zone: '', cross: '', displaced: false, situation: '', talked: '', contact: '', err: '', showNote: {}, mostNote: '', pickZone: false };
   var app = document.getElementById('app');
   var LABEL = {};
@@ -362,7 +364,7 @@
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
   function head() {
     return '<div class="head"><img class="logo" src="altagether-logo.png" alt="Altagether" width="512" height="150"><div class="kicker">Neighborhood Input &middot; Round 1</div>' +
-      '<h1>Four Altadena building rules that may change</h1></div>';
+      '<h1>Four Altadena building rules that may change</h1>' + (LANG_LINK ? '<p class="small" style="margin:10px 0 0"><a href="' + LANG_LINK + location.search + '">' + LANG_LABEL + '</a></p>' : '') + '</div>';
   }
   function progress() {
     var i = state.step, n = LAST_Q;
@@ -527,9 +529,9 @@
   function submitAnswers() {
     var d = new URLSearchParams();
     function put(k, v) { if (ENTRY[k]) d.set(ENTRY[k], v == null ? '' : String(v)); }
-    put('zone', zoneValue()); put('via', viaTag()); put('displaced', state.displaced ? 'Yes' : 'No'); put('situation', state.situation);
-    TOPICS.forEach(function (t) { var a = state.ans[t.key] || ''; put(t.key, a ? (LABEL[t.key][a] || a) : ''); put(t.key + '_note', (state.notes[t.key] || '').trim()); if (t.parts) put(t.key + '_parts', (state.parts[t.key] || []).join('; ')); });
-    put('rank', state.rank.join(' > ')); put('most_note', state.mostNote.trim()); put('design', state.design.trim()); put('other', state.other.trim()); put('talked', state.talked); put('contact', state.contact.trim());
+    put('zone', zoneValue()); put('via', viaTag()); put('displaced', state.displaced ? 'Yes' : 'No'); put('situation', canon(state.situation));
+    TOPICS.forEach(function (t) { var a = state.ans[t.key] || ''; put(t.key, a ? canon(LABEL[t.key][a] || a) : ''); put(t.key + '_note', (state.notes[t.key] || '').trim()); if (t.parts) put(t.key + '_parts', (state.parts[t.key] || []).map(canon).join('; ')); });
+    put('rank', state.rank.join(' > ')); put('most_note', state.mostNote.trim()); put('design', state.design.trim()); put('other', state.other.trim()); put('talked', canon(state.talked)); put('contact', state.contact.trim());
     if (DEMO) return Promise.resolve();
     return fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body: d });
   }

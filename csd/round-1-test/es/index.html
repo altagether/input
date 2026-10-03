@@ -1,15 +1,16 @@
 <meta charset="utf-8">
-<title>For block captains: Round 1</title>
+<meta http-equiv="content-language" content="es">
+<title>Reglas de construcción de Altadena: Opinión del vecindario, Ronda 1</title>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Altagether">
-<meta property="og:title" content="For block captains: Round 1">
-<meta property="og:description" content="LA County Planning has proposed changes to yards, house height, front fences, and parking. Tell them what your block thinks. 5 minutes. Closes October 12.">
+<meta property="og:title" content="Las reglas de construcción de Altadena podrían cambiar">
+<meta property="og:description" content="Planificación del Condado de Los Ángeles propone cambios a los jardines, la altura de las casas, las cercas delanteras y el estacionamiento. Dígales qué piensa su cuadra. 5 minutos. Cierra el 12 de octubre.">
 <meta property="og:image" content="https://altagether.github.io/input/csd/round-1-test/preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://altagether.github.io/input/csd/round-1-test/captains/">
+<meta property="og:url" content="https://altagether.github.io/input/csd/round-1-test/es/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="LA County Planning has proposed changes to yards, house height, front fences, and parking. Tell them what your block thinks. 5 minutes. Closes October 12.">
+<meta name="description" content="Planificación del Condado de Los Ángeles propone cambios a los jardines, la altura de las casas, las cercas delanteras y el estacionamiento. Dígales qué piensa su cuadra. 5 minutos. Cierra el 12 de octubre.">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Port+Lligat+Sans&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Source+Sans+3:wght@400;600;700&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
@@ -265,10 +266,16 @@
 
 <script>
 (function () {
-  var PRIV = 'Only Altagether&rsquo;s survey team sees individual answers. Your captain does not, and the County never does.';
+  // ===== CONFIG, from build/round-1.config.json. Edit that file, not this one. =====
+  var FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLScVGKOtxyaN2o1KNYrA8RABd_aVFCDfjyUSA56Keu_SjKIlYg/formResponse';
+  var ENTRY = { zone: 'entry.1602556427', via: 'entry.2008771181', displaced: 'entry.1684015608', situation: 'entry.607219266', yards: 'entry.823455489', yards_parts: 'entry.1567710985', yards_note: 'entry.357755313', height: 'entry.1545926076', height_note: 'entry.716332268', fences: 'entry.806749922', fences_note: 'entry.1130143030', parking: 'entry.2136636219', parking_note: 'entry.977346260', rank: 'entry.1756983434', most_note: 'entry.1029337679', design: 'entry.2084064010', other: 'entry.1181413530', talked: 'entry.1663902191', contact: 'entry.2125348874' };
+  var DEMO = FORM_ACTION.indexOf('PASTE_') === 0;
+  if (DEMO) document.getElementById('demoBanner').hidden = false;
+  // ===========================================================================
+  var PRIV = 'Solo el equipo de la encuesta de Altagether ve las respuestas individuales. Su capitán de cuadra no las ve, y el Condado nunca las ve.';
 
-  var WHY_NOW = 'The temporary rules the County put in place after the fire expire in the summer of 2027. LA County Planning is studying changes to the permanent rules this fall, with recommendations in early January 2027. After that, residents can comment on a written draft at public workshops.';
-  var WHY_VOICE = 'Nothing is decided yet. The rules will be the same across Altadena, but they will affect homes differently from one block to the next, so Altagether is gathering input block by block. This is a chance to say how the rules would work on lots and homes like yours.';
+  var WHY_NOW = 'Las reglas temporales que el Condado puso en vigor después del incendio vencen en el verano de 2027. Planificación del Condado de Los Ángeles está estudiando cambios a las reglas permanentes este otoño, con recomendaciones a principios de enero de 2027. Después de eso, los residentes podrán comentar sobre un borrador escrito en talleres públicos.';
+  var WHY_VOICE = 'Todavía no hay nada decidido. Las reglas serán las mismas en toda Altadena, pero afectarán a las casas de manera distinta de una cuadra a otra, por eso Altagether está recogiendo opiniones cuadra por cuadra. Esta es una oportunidad para decir cómo funcionarían las reglas en lotes y casas como la suya.';
 
   var MUNI = 'https://library.municode.com/ca/los_angeles_county/codes/code_of_ordinances?nodeId=';
   var CODE = {
@@ -284,70 +291,72 @@
   function a(url, text) { return '<a href="' + url + '" target="_blank" rel="noopener">' + text + '</a>'; }
   function codeList(items) { return '<ul class="codes">' + items.map(function (i) { return '<li>' + a(i[1], i[0]) + (i[2] ? '<span>' + i[2] + '</span>' : '') + '</li>'; }).join('') + '</ul>'; }
   var ALLCODE = [
-    ['Altadena&rsquo;s rules for single-family lots', CODE.csd, '&sect;22.320.090, part D.1. Yards, height, fences and parking are all here.'],
-    ['Countywide yards and height', CODE.zones, '&sect;22.18.040, parts C and D.'],
-    ['Countywide fences, walls and hedges', CODE.site, '&sect;22.110.070.'],
-    ['Countywide parking', CODE.parking, '&sect;22.112.070. The table of required spaces.'],
-    ['The temporary rules for rebuilding after the fire', CODE.fire, 'Chapter 22.258.'],
-    ['Countywide design rules for new houses', CODE.design, '&sect;22.140.520, part F.'],
-    ['LA County Planning: the code and how the County reads it', 'https://planning.lacounty.gov/county-code-and-interpretations/', ''],
-    ['LA County Planning: plain-language summaries', 'https://planning.lacounty.gov/planning-library/', '']
+    ['Las reglas de Altadena para lotes unifamiliares', CODE.csd, '&sect;22.320.090, parte D.1. Aquí están los jardines, la altura, las cercas y el estacionamiento.'],
+    ['Jardines y altura en todo el Condado', CODE.zones, '&sect;22.18.040, partes C y D.'],
+    ['Cercas, muros y setos en todo el Condado', CODE.site, '&sect;22.110.070.'],
+    ['Estacionamiento en todo el Condado', CODE.parking, '&sect;22.112.070. La tabla de espacios requeridos.'],
+    ['Las reglas temporales para reconstruir después del incendio', CODE.fire, 'Capítulo 22.258.'],
+    ['Reglas de diseño de todo el Condado para casas nuevas', CODE.design, '&sect;22.140.520, parte F.'],
+    ['Planificación del Condado de Los Ángeles: el código y cómo lo interpreta el Condado', 'https://planning.lacounty.gov/county-code-and-interpretations/', ''],
+    ['Planificación del Condado de Los Ángeles: resúmenes en lenguaje sencillo', 'https://planning.lacounty.gov/planning-library/', '']
   ];
 
   var TOPICS = [
-    { key: 'yards', name: 'Yards', title: 'How far a house is from the street and the neighbors&rsquo; houses', cite: '&sect;22.320.090.D.1.a',
-      today: '<ul><li>The minimum distance between the street and a house is 20 feet. This distance is what we know as the front yard.</li><li>In order to make neighborhoods consistent, the house with the smallest front yard 20 feet or over sets the minimum for that block. For example, if the house closest to the street is 22 feet away from it, then that sets the minimum distance from the street for everyone else.</li><li>On most lots in Altadena, the back yard is 25 ft, and on lots that are 20,000 sq ft or more, it is 35 ft.</li><li>Side yards are 10% of the lot&rsquo;s width, but they need to be at least 5 ft.</li></ul>',
-      county: 'Use the same numbers on every lot, like the rest of the County does:<ul><li>20 ft in front</li><li>5 ft on interior sides (the sides between houses)</li><li>15 ft in back</li><li>10 ft on the street side of some corner lots</li></ul>',
-      means: 'The front yard would no longer depend on the other houses on your side of the block. Example: on an ordinary 60 ft wide lot, the back yard could be 10 ft shallower and each side yard 1 ft narrower than allowed today (see images below).',
+    { key: 'yards', name: 'Jardines', title: 'A qué distancia está una casa de la calle y de las casas de los vecinos', cite: '&sect;22.320.090.D.1.a',
+      today: '<ul><li>La distancia mínima entre la calle y una casa es de 20 pies. Esta distancia es lo que conocemos como el jardín delantero.</li><li>Para que los vecindarios sean uniformes, la casa con el jardín delantero más pequeño de 20 pies o más fija el mínimo para esa cuadra. Por ejemplo, si la casa más cercana a la calle está a 22 pies de ella, entonces esa es la distancia mínima desde la calle para todos los demás.</li><li>En la mayoría de los lotes de Altadena, el jardín trasero es de 25 pies, y en los lotes de 20,000 pies cuadrados o más, es de 35 pies.</li><li>Los jardines laterales son el 10% del ancho del lote, pero deben medir al menos 5 pies.</li></ul>',
+      county: 'Usar los mismos números en todos los lotes, como hace el resto del Condado:<ul><li>20 pies al frente</li><li>5 pies en los lados interiores (los lados entre casas)</li><li>15 pies atrás</li><li>10 pies del lado de la calle en algunos lotes de esquina</li></ul>',
+      means: 'El jardín delantero ya no dependería de las otras casas de su lado de la cuadra. Ejemplo: en un lote común de 60 pies de ancho, el jardín trasero podría ser 10 pies menos profundo y cada jardín lateral 1 pie más estrecho de lo que se permite hoy (vea las imágenes abajo).',
       figure: 'yards',
-      links: [['Altadena&rsquo;s yard rule', 'csd', '&sect;22.320.090.D.1.a'], ['The countywide yard rule', 'zones', '&sect;22.18.040, part C'], ['The temporary rules for rebuilding after the fire', 'fire', 'Chapter 22.258']],
-      deeper: [['The temporary rule, and August 2027', 'After the fire the County temporarily changed Altadena&rsquo;s front-yard rule for rebuilds by making the front yard rule a flat 20 ft minimum. That temporary rule expires in the summer of 2027.'],
-               ['What the County has not proposed changing', 'The County has not proposed changing the limit on how big a house can be, nor has the County changed the rule that nothing taller than 23 ft may stand within 15 ft of a property line.']],
-      procon: [['One set of numbers on every lot is simpler to check, and matches the rest of the County and the temporary rebuild rules', 'More room to build, which helps a rebuild fit on a small lot', 'Your front yard would no longer depend on what the neighbors built'], ['Houses could sit closer together, with less privacy and light between them', 'Streets where houses sit well back from the street could lose that look over time', 'With 5 ft side yards, the property line falls inside the fire-safety zone around both houses, which limits what can be planted or built there']],
-      q: 'Do you agree with the proposed change to yards?',
-      opts: [['agree', 'Agree'], ['disagree', 'Disagree'], ['unsure', 'No opinion']],
-      parts: ['Front yard', 'Side yards', 'Back yard'], prompt: 'Which part do you disagree with, and why?' },
-    { key: 'height', name: 'Height', title: 'How tall a house can be', cite: '&sect;22.320.090.D.1.b',
-      today: '<ul><li>For most properties in Altadena, a house can be up to 30 ft tall. This applies to lots under 20,000 sq ft, and flag lots (lots where there is a narrow opening at the street that leads to the lot itself).</li><li>On lots that are larger than 20,000 sq ft, the maximum height is 35 ft.</li></ul>',
-      county: 'Allow 35 ft on every lot, just like the rest of the County does.',
-      means: 'On most Altadena lots, a house could be 5 ft taller than it is today.',
-      figure: { a: ['30 ft', 'Most lots today', 90], b: ['35 ft', 'Proposed change', 105] },
-      links: [['Altadena&rsquo;s height rule', 'csd', '&sect;22.320.090.D.1.b'], ['The countywide height rule', 'zones', '&sect;22.18.040, part D']],
-      deeper: [['What the County has not proposed changing', 'The County has not proposed changing the two-story limit, or the rule that nothing taller than 23 ft may stand within 15 ft of a property line.']],
-      procon: [['Matches the limit in most single-family zones in the County', 'More freedom for roof shapes and for building on a slope'], ['A taller house next door can block views and sun', 'Taller houses can look bulky on a hillside', '30 ft is also the limit in the temporary rebuild rules, so 35 ft would be taller than what is being built now']],
-      q: 'Do you agree with the proposed change to height?',
-      opts: [['agree', 'Agree'], ['disagree', 'Disagree'], ['unsure', 'No opinion']],
-      prompt: 'Why do you disagree?' },
-    { key: 'fences', name: 'Fences', title: 'Fences and hedges at the front of a lot', cite: '&sect;22.320.090.D.1.c',
-      today: 'In the first 10 ft of a lot, measured from the edge of the public right-of-way:<ul><li>hedges can be no more than 42 inches tall</li><li>if the lot is a corner lot, the 42 inch rule applies to walls and fences too</li><li>on a non-corner lot, a fence or wall in that 10 ft area can be 6 ft tall as long as you can see through it and it is not next to a driveway</li></ul>Further back than 10 ft, 6 ft is already allowed.',
-      county: 'Removing the 42 inch limits in front yards and in the corner yards of corner lots, and allow fences and hedges up to 72 inches (6 ft). The rules beside driveways stay. The County has not said whether a tall fence would still have to be see-through.',
-      means: 'In the first 10 ft of a lot, hedges and fences up to 6 ft would be allowed (on corner lots too). Beside driveways the limit would stay at 42 inches.',
-      figure: { a: ['42 in.', 'Hedges, and fences on corner lots, today', 49], b: ['72 in.', 'Proposed change', 84], note: 'To scale with each other. In the first 10 ft of a lot. On lots that are not on a corner, a see-through fence can already be 6 ft.' },
-      links: [['Altadena&rsquo;s fence and hedge rule', 'csd', '&sect;22.320.090.D.1.c'], ['The countywide fence rule', 'site', '&sect;22.110.070']],
-      deeper: [['Beside the driveway', 'Fences stay low in the triangle next to a driveway, so drivers backing out can see the street and pedestrians approaching the driveway.' + driveFigure()]],
-      procon: [['More privacy and security, especially while many lots stand empty', 'One height limit is simpler than several'], ['Tall fences and hedges can close a street in and make it feel less neighborly', 'It would allow more than the rest of the County does in a front yard']],
-      q: 'Do you agree with the proposed change to fences and hedges?',
-      opts: [['agree', 'Agree'], ['disagree', 'Disagree'], ['unsure', 'No opinion']],
-      prompt: 'Why do you disagree?' },
-    { key: 'parking', name: 'Parking', title: 'The number of parking spaces a house must have', cite: '&sect;22.320.090.D.1.e',
-      today: 'The number of parking spaces depends on the number of bedrooms:<ul><li>2 spaces for a house with one to four bedrooms</li><li>3 spaces for five or six bedrooms, and more above that</li><li>when a house needs 3 or more spaces, they can all be open-air, one behind the other</li></ul>',
-      county: 'Requiring two covered spaces for every house, however many bedrooms it has, as the rest of the County does. Under the countywide rule, covered parking is not required on lots larger than one acre.',
-      means: 'A house with five or more bedrooms would need fewer spaces than today, but both would have to be covered. For smaller houses the number stays at two. Altadena&rsquo;s rule today does not say those two spaces must be covered, and the temporary rebuild rules allow uncovered parking, so for most houses the change is that both spaces would have to be covered.',
-      links: [['Altadena&rsquo;s parking rule', 'csd', '&sect;22.320.090.D.1.e'], ['The countywide parking rule', 'parking', '&sect;22.112.070'], ['Countywide exemption for lots of one acre or more', 'exempt', '&sect;22.112.030, part B'], ['Countywide parking design: space sizes and covered parking', 'pdesign', '&sect;22.112.080']],
-      deeper: [['What counts as a parking space', '<ul><li>A standard space is at least 8.5 ft wide and 18 ft deep.</li><li>Covered means in a garage, carport, or similar structure. A tarp or temporary cover does not count.</li><li>A bedroom, for this rule, is any habitable room with a closet that is designed so it could be used for sleeping, not counting living, cooking, or dining rooms.</li></ul>']],
-      procon: [['Cars are kept under a roof and out of sight from the street', 'Matches the rule in the rest of the County', 'The same number for every house is simpler than counting bedrooms'], ['A garage or carport adds cost to a rebuild on a tight budget', 'Garages often become storage, and the cars park in the driveway anyway', 'The temporary rebuild rules allow uncovered parking, so this would be stricter']],
-      q: 'Do you agree with the proposed change to parking?',
-      opts: [['agree', 'Agree'], ['disagree', 'Disagree'], ['unsure', 'No opinion']],
-      prompt: 'Why do you disagree?' }
+      links: [['La regla de jardines de Altadena', 'csd', '&sect;22.320.090.D.1.a'], ['La regla de jardines de todo el Condado', 'zones', '&sect;22.18.040, parte C'], ['Las reglas temporales para reconstruir después del incendio', 'fire', 'Capítulo 22.258']],
+      deeper: [['La regla temporal y agosto de 2027', 'Después del incendio, el Condado cambió temporalmente la regla del jardín delantero de Altadena para las reconstrucciones, fijando un mínimo uniforme de 20 pies. Esa regla temporal vence en el verano de 2027.'],
+               ['Lo que el Condado no ha propuesto cambiar', 'El Condado no ha propuesto cambiar el límite de qué tan grande puede ser una casa, ni ha cambiado la regla de que nada de más de 23 pies de altura puede estar a menos de 15 pies de un lindero de la propiedad.']],
+      procon: [['Un solo conjunto de números en todos los lotes es más fácil de verificar, y coincide con el resto del Condado y con las reglas temporales de reconstrucción', 'Más espacio para construir, lo que ayuda a que una reconstrucción quepa en un lote pequeño', 'Su jardín delantero ya no dependería de lo que construyeron los vecinos'], ['Las casas podrían quedar más juntas, con menos privacidad y luz entre ellas', 'Las calles donde las casas están bien retiradas de la calle podrían perder ese aspecto con el tiempo', 'Con jardines laterales de 5 pies, el lindero de la propiedad queda dentro de la zona de seguridad contra incendios de ambas casas, lo que limita lo que se puede plantar o construir allí']],
+      q: '¿Está de acuerdo con el cambio propuesto a los jardines?',
+      opts: [['agree', 'De acuerdo'], ['disagree', 'En desacuerdo'], ['unsure', 'Sin opinión']],
+      parts: ['Jardín delantero', 'Jardines laterales', 'Jardín trasero'], prompt: '¿Con qué parte no está de acuerdo, y por qué?' },
+    { key: 'height', name: 'Altura', title: 'Qué tan alta puede ser una casa', cite: '&sect;22.320.090.D.1.b',
+      today: '<ul><li>En la mayoría de las propiedades de Altadena, una casa puede tener hasta 30 pies de altura. Esto aplica a lotes de menos de 20,000 pies cuadrados y a lotes en forma de bandera (lotes con una abertura estrecha hacia la calle que lleva al lote mismo).</li><li>En lotes de más de 20,000 pies cuadrados, la altura máxima es de 35 pies.</li></ul>',
+      county: 'Permitir 35 pies en todos los lotes, igual que el resto del Condado.',
+      means: 'En la mayoría de los lotes de Altadena, una casa podría ser 5 pies más alta que hoy.',
+      figure: { a: ['30 ft', 'La mayoría de los lotes hoy', 90], b: ['35 ft', 'Cambio propuesto', 105] },
+      links: [['La regla de altura de Altadena', 'csd', '&sect;22.320.090.D.1.b'], ['La regla de altura de todo el Condado', 'zones', '&sect;22.18.040, parte D']],
+      deeper: [['Lo que el Condado no ha propuesto cambiar', 'El Condado no ha propuesto cambiar el límite de dos pisos, ni la regla de que nada de más de 23 pies de altura puede estar a menos de 15 pies de un lindero de la propiedad.']],
+      procon: [['Coincide con el límite de la mayoría de las zonas unifamiliares del Condado', 'Más libertad para la forma del techo y para construir en pendiente'], ['Una casa más alta al lado puede bloquear las vistas y el sol', 'Las casas más altas pueden verse voluminosas en una ladera', '30 pies es también el límite en las reglas temporales de reconstrucción, así que 35 pies sería más alto que lo que se está construyendo ahora']],
+      q: '¿Está de acuerdo con el cambio propuesto a la altura?',
+      opts: [['agree', 'De acuerdo'], ['disagree', 'En desacuerdo'], ['unsure', 'Sin opinión']],
+      prompt: '¿Por qué no está de acuerdo?' },
+    { key: 'fences', name: 'Cercas', title: 'Cercas y setos al frente de un lote', cite: '&sect;22.320.090.D.1.c',
+      today: 'En los primeros 10 pies de un lote, medidos desde el borde de la vía pública:<ul><li>los setos no pueden medir más de 42 pulgadas de alto</li><li>si el lote es de esquina, la regla de 42 pulgadas aplica también a muros y cercas</li><li>en un lote que no es de esquina, una cerca o muro en esa área de 10 pies puede medir 6 pies siempre que se pueda ver a través de ella y no esté junto a una entrada de autos</li></ul>Más atrás de los 10 pies, ya se permiten 6 pies.',
+      county: 'Eliminar los límites de 42 pulgadas en los jardines delanteros y en los jardines de esquina de los lotes de esquina, y permitir cercas y setos de hasta 72 pulgadas (6 pies). Las reglas junto a las entradas de autos se mantienen. El Condado no ha dicho si una cerca alta tendría que seguir dejando ver a través de ella.',
+      means: 'En los primeros 10 pies de un lote, se permitirían setos y cercas de hasta 6 pies (también en lotes de esquina). Junto a las entradas de autos, el límite seguiría siendo de 42 pulgadas.',
+      figure: { a: ['42 in.', 'Setos, y cercas en lotes de esquina, hoy', 49], b: ['72 in.', 'Cambio propuesto', 84], note: 'A escala entre sí. En los primeros 10 pies de un lote. En lotes que no están en una esquina, una cerca que deja ver a través de ella ya puede medir 6 pies.' },
+      links: [['La regla de cercas y setos de Altadena', 'csd', '&sect;22.320.090.D.1.c'], ['La regla de cercas de todo el Condado', 'site', '&sect;22.110.070']],
+      deeper: [['Junto a la entrada de autos', 'Las cercas se mantienen bajas en el triángulo junto a una entrada de autos, para que los conductores que salen en reversa puedan ver la calle y a los peatones que se acercan a la entrada.' + driveFigure()]],
+      procon: [['Más privacidad y seguridad, especialmente mientras muchos lotes están vacíos', 'Un solo límite de altura es más simple que varios'], ['Las cercas y setos altos pueden encerrar una calle y hacer que se sienta menos vecinal', 'Permitiría más de lo que permite el resto del Condado en un jardín delantero']],
+      q: '¿Está de acuerdo con el cambio propuesto a las cercas y los setos?',
+      opts: [['agree', 'De acuerdo'], ['disagree', 'En desacuerdo'], ['unsure', 'Sin opinión']],
+      prompt: '¿Por qué no está de acuerdo?' },
+    { key: 'parking', name: 'Estacionamiento', title: 'El número de espacios de estacionamiento que debe tener una casa', cite: '&sect;22.320.090.D.1.e',
+      today: 'La cantidad de espacios de estacionamiento depende del número de dormitorios:<ul><li>2 espacios para una casa de uno a cuatro dormitorios</li><li>3 espacios para cinco o seis dormitorios, y más a partir de ahí</li><li>cuando una casa necesita 3 o más espacios, todos pueden ser al aire libre, uno detrás del otro</li></ul>',
+      county: 'Exigir dos espacios techados para cada casa, sin importar cuántos dormitorios tenga, como hace el resto del Condado. Bajo la regla de todo el Condado, el estacionamiento techado no se exige en lotes de más de un acre.',
+      means: 'Una casa con cinco o más dormitorios necesitaría menos espacios que hoy, pero ambos tendrían que ser techados. Para las casas más pequeñas, el número se mantiene en dos. La regla actual de Altadena no dice que esos dos espacios deban ser techados, y las reglas temporales de reconstrucción permiten estacionamiento sin techo, así que para la mayoría de las casas el cambio es que ambos espacios tendrían que ser techados.',
+      links: [['La regla de estacionamiento de Altadena', 'csd', '&sect;22.320.090.D.1.e'], ['La regla de estacionamiento de todo el Condado', 'parking', '&sect;22.112.070'], ['Exención en todo el Condado para lotes de un acre o más', 'exempt', '&sect;22.112.030, parte B'], ['Diseño de estacionamiento en todo el Condado: tamaños de los espacios y estacionamiento techado', 'pdesign', '&sect;22.112.080']],
+      deeper: [['Qué cuenta como espacio de estacionamiento', '<ul><li>Un espacio estándar mide al menos 8.5 pies de ancho y 18 pies de fondo.</li><li>Techado significa en un garaje, cochera abierta (carport) o estructura similar. Una lona o cubierta temporal no cuenta.</li><li>Un dormitorio, para esta regla, es cualquier cuarto habitable con clóset que esté diseñado de modo que pueda usarse para dormir, sin contar la sala, la cocina ni el comedor.</li></ul>']],
+      procon: [['Los autos quedan bajo techo y fuera de la vista desde la calle', 'Coincide con la regla del resto del Condado', 'El mismo número para cada casa es más simple que contar dormitorios'], ['Una cochera o cochera abierta agrega costo a una reconstrucción con presupuesto ajustado', 'Los garajes a menudo terminan como bodega, y los autos se estacionan en la entrada de todos modos', 'Las reglas temporales de reconstrucción permiten estacionamiento sin techo, así que esto sería más estricto']],
+      q: '¿Está de acuerdo con el cambio propuesto al estacionamiento?',
+      opts: [['agree', 'De acuerdo'], ['disagree', 'En desacuerdo'], ['unsure', 'Sin opinión']],
+      prompt: '¿Por qué no está de acuerdo?' }
   ];
 
   var SITUATIONS = [
-    ['I am an owner', ['Rebuilding', 'Back after rebuilding', 'Lost my home, bought another in Altadena', 'Home is standing, living in it', 'Displaced, plan to return', 'Displaced, not sure']],
-    ['I am a renter', ['Home is standing, living in it', 'Home is standing, displaced', 'Home was lost, plan to return', 'Home was lost, not sure']]
+    ['Soy propietario(a)', ['Reconstruyendo', 'De vuelta después de reconstruir', 'Perdí mi casa, compré otra en Altadena', 'La casa sigue en pie, vivo en ella', 'Desplazado(a), planeo regresar', 'Desplazado(a), no estoy seguro(a)']],
+    ['Soy inquilino(a)', ['La casa sigue en pie, vivo en ella', 'La casa sigue en pie, desplazado(a)', 'La casa se perdió, planeo regresar', 'La casa se perdió, no estoy seguro(a)']]
   ];
   var STEPS = ['start', 'yards', 'height', 'fences', 'parking', 'most', 'design', 'you', 'send', 'done'];
   var LAST_Q = STEPS.indexOf('send');
   var PARAMS = new URLSearchParams(location.search), LINK_ZONE = PARAMS.get('zone') || '';
+  var LANG_LINK = '../', LANG_LABEL = 'This survey in English', CANON = {"&sect;22.18.040, partes C y D.": "&sect;22.18.040, parts C and D.", "Cercas, muros y setos en todo el Condado": "Countywide fences, walls and hedges", "&sect;22.140.520, parte F.": "&sect;22.140.520, part F.", "Planificación del Condado de Los Ángeles: el código y cómo lo interpreta el Condado": "LA County Planning: the code and how the County reads it", "Planificación del Condado de Los Ángeles: resúmenes en lenguaje sencillo": "LA County Planning: plain-language summaries", "&sect;22.18.040, parte C": "&sect;22.18.040, part C", "La regla temporal y agosto de 2027": "The temporary rule, and August 2027", "¿Está de acuerdo con el cambio propuesto a los jardines?": "Do you agree with the proposed change to yards?", "¿Con qué parte no está de acuerdo, y por qué?": "Which part do you disagree with, and why?", "&sect;22.18.040, parte D": "&sect;22.18.040, part D", "¿Está de acuerdo con el cambio propuesto a la altura?": "Do you agree with the proposed change to height?", "¿Por qué no está de acuerdo?": "Why do you disagree?", "Setos, y cercas en lotes de esquina, hoy": "Hedges, and fences on corner lots, today", "¿Está de acuerdo con el cambio propuesto a las cercas y los setos?": "Do you agree with the proposed change to fences and hedges?", "&sect;22.112.030, parte B": "&sect;22.112.030, part B", "Diseño de estacionamiento en todo el Condado: tamaños de los espacios y estacionamiento techado": "Countywide parking design: space sizes and covered parking", "¿Está de acuerdo con el cambio propuesto al estacionamiento?": "Do you agree with the proposed change to parking?", "Perdí mi casa, compré otra en Altadena": "Lost my home, bought another in Altadena", "La casa sigue en pie, vivo en ella": "Home is standing, living in it", "Desplazado(a), planeo regresar": "Displaced, plan to return", "Desplazado(a), no estoy seguro(a)": "Displaced, not sure", "La casa sigue en pie, desplazado(a)": "Home is standing, displaced", "La casa se perdió, planeo regresar": "Home was lost, plan to return", "La casa se perdió, no estoy seguro(a)": "Home was lost, not sure", "Las reglas de Altadena para lotes unifamiliares": "Altadena&rsquo;s rules for single-family lots", "Jardines y altura en todo el Condado": "Countywide yards and height", "Estacionamiento en todo el Condado": "Countywide parking", "&sect;22.112.070. La tabla de espacios requeridos.": "&sect;22.112.070. The table of required spaces.", "Las reglas temporales para reconstruir después del incendio": "The temporary rules for rebuilding after the fire", "Capítulo 22.258.": "Chapter 22.258.", "Reglas de diseño de todo el Condado para casas nuevas": "Countywide design rules for new houses", "La regla de jardines de Altadena": "Altadena&rsquo;s yard rule", "La regla de jardines de todo el Condado": "The countywide yard rule", "Capítulo 22.258": "Chapter 22.258", "Lo que el Condado no ha propuesto cambiar": "What the County has not proposed changing", "Sin opinión": "No opinion", "Jardín delantero": "Front yard", "Jardines laterales": "Side yards", "Jardín trasero": "Back yard", "Qué tan alta puede ser una casa": "How tall a house can be", "La mayoría de los lotes hoy": "Most lots today", "Cambio propuesto": "Proposed change", "La regla de altura de Altadena": "Altadena&rsquo;s height rule", "La regla de altura de todo el Condado": "The countywide height rule", "Coincide con el límite de la mayoría de las zonas unifamiliares del Condado": "Matches the limit in most single-family zones in the County", "Más libertad para la forma del techo y para construir en pendiente": "More freedom for roof shapes and for building on a slope", "Una casa más alta al lado puede bloquear las vistas y el sol": "A taller house next door can block views and sun", "Las casas más altas pueden verse voluminosas en una ladera": "Taller houses can look bulky on a hillside", "Cercas y setos al frente de un lote": "Fences and hedges at the front of a lot", "La regla de cercas y setos de Altadena": "Altadena&rsquo;s fence and hedge rule", "La regla de cercas de todo el Condado": "The countywide fence rule", "Junto a la entrada de autos": "Beside the driveway", "Un solo límite de altura es más simple que varios": "One height limit is simpler than several", "El número de espacios de estacionamiento que debe tener una casa": "The number of parking spaces a house must have", "La regla de estacionamiento de Altadena": "Altadena&rsquo;s parking rule", "La regla de estacionamiento de todo el Condado": "The countywide parking rule", "Exención en todo el Condado para lotes de un acre o más": "Countywide exemption for lots of one acre or more", "Qué cuenta como espacio de estacionamiento": "What counts as a parking space", "Los autos quedan bajo techo y fuera de la vista desde la calle": "Cars are kept under a roof and out of sight from the street", "Coincide con la regla del resto del Condado": "Matches the rule in the rest of the County", "Soy propietario(a)": "I am an owner", "De vuelta después de reconstruir": "Back after rebuilding", "Soy inquilino(a)": "I am a renter", "Las cuatro reglas": "The four rules", "Sobre usted": "About you", "A escala entre sí.": "To scale with each other.", "Siguiente regla": "Next rule", "Normas de Diseño Residencial para Unidades Individuales": "Residential Design Standards for Single Units", "Sí, en una reunión de la cuadra": "Yes, at a block gathering", "Sí, de manera informal": "Yes, informally", "Enviar mis respuestas": "Send my answers", " + motivo": " + reason", "Sin respuesta": "No answer", "Lo que más importa": "Matters most", "Comentarios escritos": "Written comments", "Registrados, solo los temas": "Recorded, themes only", "Contado para": "Counted for", ", donde vivía": ", where you lived", "Llegó por": "Came through", "El enlace de su capitán": "Your captain&rsquo;s link", "El enlace abierto": "The open link", "Enlace de socio: ": "Partner link: ", "Guardado por separado": "Kept separately", "Su cruce de calles, que nosotros ubicaremos en una zona": "Your cross streets, to be placed in a zone by us", "Seleccionado. Presione copiar": "Selected. Press copy", "Seleccione el texto de arriba para copiarlo": "Select the text above to copy", "Necesitamos uno u otro para contar sus respuestas una sola vez.": "We need one or the other to count your answers once.", "Por favor elija su zona en la pantalla anterior.": "Please pick your zone on the previous screen.", "Enviando\\u2026": "Sending\\u2026", "No se pudo enviar. Revise su conexión e intente de nuevo.": "Could not send. Check your connection and try again.", "ALTADENA TEMA 1 RONDA. TEXTO PRELIMINAR, ": "ALTADENA THEME 1 ROUND. DRAFT WORDING, ", "30 de septiembre de 2026": "September 30, 2026", "Cuatro reglas de construcción de Altadena que podrían cambiar": "Four Altadena building rules that may change", "POR QUÉ AHORA": "WHY NOW", "POR QUÉ IMPORTA SU VOZ": "WHY YOUR VOICE MATTERS", "Encabezado: ": "Heading: ", "Hoy: ": "Today: ", "Planificación del Condado de Los Ángeles propone: ": "LA County Planning is proposing: ", "Qué significa: ": "What it means: ", "Para profundizar, ": "Go deeper, ", "Argumentos a favor del cambio:": "Arguments for the change:", "Argumentos en contra del cambio:": "Arguments against the change:", "Pregunta: ": "Question: ", "Agregar un comentario (opcional): texto libre, cualquier respuesta": "Add a comment (optional): free text, any answer", "SU SITUACIÓN (opcional): ": "YOUR SITUATION (optional): ", "ENTRE LAS CUATRO": "ACROSS THE FOUR", "¿Cuál de estas importa más en su cuadra?": "Which of these matters most on your block?", "Agregar un comentario (opcional): texto libre": "Add a comment (optional): free text", "EN SUS PROPIAS PALABRAS": "IN YOUR OWN WORDS", "¿Algo más que el Condado deba saber sobre su cuadra?": "Anything else the County should know about your block?", "Seleccione y copie abajo": "Select and copy below", "Copiar el texto de la encuesta": "Copy survey wording", "Jardines": "Yards", "De acuerdo": "Agree", "En desacuerdo": "Disagree", "Altura": "Height", "Cercas": "Fences", "Estacionamiento": "Parking", "Reconstruyendo": "Rebuilding", "Hoy": "Today", "Continuar": "Continue", "Situación": "Situation", "Contacto": "Contact", "Sí": "Yes", "Copiado": "Copied", "Zona ": "Zona ", " de ": " of "};
+  function canon(v) { return CANON[v] || v; }
   var state = { step: 0, ans: {}, parts: {}, notes: {}, rank: [], design: '', other: '', zone: '', cross: '', displaced: false, situation: '', talked: '', contact: '', err: '', showNote: {}, mostNote: '', pickZone: false };
   var app = document.getElementById('app');
   var LABEL = {};
@@ -355,15 +364,15 @@
 
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
   function head() {
-    return '<div class="head"><img class="logo" src="altagether-logo.png" alt="Altagether" width="512" height="150"><div class="kicker">Neighborhood Input &middot; Round 1</div>' +
-      '<h1>Four Altadena building rules that may change</h1></div>';
+    return '<div class="head"><img class="logo" src="altagether-logo.png" alt="Altagether" width="512" height="150"><div class="kicker">Aportes del vecindario &middot; Ronda 1</div>' +
+      '<h1>Cuatro reglas de construcción de Altadena que podrían cambiar</h1>' + (LANG_LINK ? '<p class="small" style="margin:10px 0 0"><a href="' + LANG_LINK + location.search + '">' + LANG_LABEL + '</a></p>' : '') + '</div>';
   }
   function progress() {
     var i = state.step, n = LAST_Q;
-    return '<img class="logo mini" src="altagether-logo.png" alt="Altagether" width="512" height="150"><div class="progress"><div class="lbl"><span>Step ' + i + ' of ' + n + '</span><span>' + (i <= 4 ? 'The four rules' : 'About you') + '</span></div><div class="track"><i style="width:' + Math.round(i / n * 100) + '%"></i></div></div>';
+    return '<img class="logo mini" src="altagether-logo.png" alt="Altagether" width="512" height="150"><div class="progress"><div class="lbl"><span>Paso ' + i + ' de ' + n + '</span><span>' + (i <= 4 ? 'Las cuatro reglas' : 'Sobre usted') + '</span></div><div class="track"><i style="width:' + Math.round(i / n * 100) + '%"></i></div></div>';
   }
   function nav(next, noBack) {
-    return '<div class="nav">' + (noBack ? '' : '<button type="button" class="btn back" data-go="-1">Back</button>') + '<button type="button" class="btn" data-go="1">' + next + '</button></div>';
+    return '<div class="nav">' + (noBack ? '' : '<button type="button" class="btn back" data-go="-1">Atrás</button>') + '<button type="button" class="btn" data-go="1">' + next + '</button></div>';
   }
 
   function yardsFigure() {
@@ -373,18 +382,18 @@
       return '<text x="' + cx + '" y="20" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="15" font-weight="700" fill="' + col + '">' + title + '</text>' +
         '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="#efe9da" stroke="#1b1a17" stroke-width="2"></rect>' +
         '<rect x="' + bx + '" y="' + by + '" width="' + bw + '" height="' + bh + '" fill="#fffbf2" stroke="' + col + '" stroke-width="2" stroke-dasharray="7 4"></rect>' +
-        '<text x="' + cx + '" y="' + (y + rear * s / 2 + 5) + '" text-anchor="middle" font-family="Source Serif 4, Georgia, serif" font-size="13" font-weight="700" fill="' + col + '">' + rear + ' ft back</text>' +
-        '<text x="' + cx + '" y="' + (by + bh / 2 - 12) + '" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="700" fill="#1b1a17">Room to build</text>' +
+        '<text x="' + cx + '" y="' + (y + rear * s / 2 + 5) + '" text-anchor="middle" font-family="Source Serif 4, Georgia, serif" font-size="13" font-weight="700" fill="' + col + '">' + rear + ' pies al fondo</text>' +
+        '<text x="' + cx + '" y="' + (by + bh / 2 - 12) + '" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="700" fill="#1b1a17">Espacio para construir</text>' +
         '<text x="' + cx + '" y="' + (by + bh / 2 + 6) + '" text-anchor="middle" font-family="Source Serif 4, Georgia, serif" font-size="13" fill="#3a3833">' + (60 - 2 * side) + ' &#215; ' + (120 - front - rear) + ' ft</text>' +
-        '<text x="' + cx + '" y="' + (by + bh / 2 + 24) + '" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="12" fill="#5b574f">' + side + ' ft each side</text>' +
-        '<text x="' + cx + '" y="' + (y + h - front * s / 2 + 5) + '" text-anchor="middle" font-family="Source Serif 4, Georgia, serif" font-size="13" font-weight="700" fill="' + col + '">' + front + ' ft front</text>';
+        '<text x="' + cx + '" y="' + (by + bh / 2 + 24) + '" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="12" fill="#5b574f">' + side + ' pies a cada lado</text>' +
+        '<text x="' + cx + '" y="' + (y + h - front * s / 2 + 5) + '" text-anchor="middle" font-family="Source Serif 4, Georgia, serif" font-size="13" font-weight="700" fill="' + col + '">' + front + ' pies al frente</text>';
     }
     return '<figure><svg viewBox="0 0 440 318" role="img" aria-label="Two plans of the same 60 by 120 foot lot. Today: 20 foot front yard, 25 foot back yard, 6 foot side yards, leaving 48 by 75 feet to build on. With the Proposed change: 20 foot front, 15 foot back, 5 foot sides, leaving 50 by 85 feet.">' +
       '<rect x="0" y="0" width="440" height="318" fill="#fffbf2"></rect>' +
-      lot(50, 'Today', 20, 25, 6, '#1b1a17') + lot(270, 'Proposed change', 20, 15, 5, '#9b2c1f') +
+      lot(50, 'Hoy', 20, 25, 6, '#1b1a17') + lot(270, 'Cambio propuesto', 20, 15, 5, '#9b2c1f') +
       '<rect x="0" y="280" width="440" height="38" fill="#e8e2d2"></rect><line x1="0" y1="299" x2="440" y2="299" stroke="#5b574f" stroke-width="2" stroke-dasharray="16 12"></line>' +
       '<text x="12" y="294" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#5b574f">STREET</text></svg>' +
-      '<figcaption>To scale. The same 60 &times; 120 ft lot, an ordinary Altadena size. The dashed line is where a house may stand. The County has not proposed changing the limit on how big the house can be.</figcaption></figure>';
+      '<figcaption>A escala. El mismo lote de 60 &times; 120 pies, un tamaño común en Altadena. La línea punteada marca dónde puede ubicarse una casa. El Condado no ha propuesto cambiar el límite de qué tan grande puede ser la casa.</figcaption></figure>';
   }
   function driveFigure() {
     var F = 'font-family="Source Sans 3, sans-serif"', S = 'font-family="Source Serif 4, Georgia, serif"';
@@ -392,9 +401,9 @@
       '<rect x="0" y="0" width="440" height="262" fill="#fffbf2"></rect>' +
       '<rect x="40" y="16" width="360" height="176" fill="#efe9da" stroke="#1b1a17" stroke-width="2"></rect>' +
       '<rect x="190" y="16" width="60" height="176" fill="#e3ddcd"></rect>' +
-      '<text x="220" y="40" text-anchor="middle" ' + F + ' font-size="12" font-weight="700" fill="#5b574f">DRIVEWAY</text>' +
+      '<text x="220" y="40" text-anchor="middle" ' + F + ' font-size="12" font-weight="700" fill="#5b574f">ENTRADA DE AUTOS</text>' +
       '<rect x="0" y="192" width="440" height="70" fill="#e8e2d2"></rect><line x1="0" y1="230" x2="440" y2="230" stroke="#5b574f" stroke-width="2" stroke-dasharray="16 12"></line>' +
-      '<text x="12" y="254" ' + F + ' font-size="12" font-weight="700" fill="#5b574f">STREET</text>' +
+      '<text x="12" y="254" ' + F + ' font-size="12" font-weight="700" fill="#5b574f">CALLE</text>' +
       '<polygon points="190,192 190,132 130,192" fill="#f3dcd7" stroke="#9b2c1f" stroke-width="2" stroke-dasharray="6 4"></polygon>' +
       '<polygon points="250,192 250,132 310,192" fill="#f3dcd7" stroke="#9b2c1f" stroke-width="2" stroke-dasharray="6 4"></polygon>' +
       '<line x1="40" y1="192" x2="130" y2="192" stroke="#1b1a17" stroke-width="7"></line><line x1="310" y1="192" x2="400" y2="192" stroke="#1b1a17" stroke-width="7"></line>' +
@@ -402,16 +411,16 @@
       '<rect x="202" y="96" width="36" height="66" rx="7" fill="#fffbf2" stroke="#1b1a17" stroke-width="2"></rect><rect x="208" y="104" width="24" height="14" rx="3" fill="#cfc9bb"></rect>' +
       '<path d="M220 168v22" stroke="#1b1a17" stroke-width="2.5" fill="none"></path><path d="M213 183l7 8 7-8" stroke="#1b1a17" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>' +
       '<circle cx="118" cy="206" r="5" fill="#1b1a17"></circle><path d="M118 211v8M118 219l-7 9M118 219l7 9M111 216l7-4 7 4" stroke="#1b1a17" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>' +
-      '<text x="84" y="110" text-anchor="middle" ' + F + ' font-size="13" font-weight="700" fill="#1b1a17">Up to 6 ft</text><text x="84" y="126" text-anchor="middle" ' + F + ' font-size="12" fill="#5b574f">fence allowed</text>' +
-      '<text x="356" y="110" text-anchor="middle" ' + F + ' font-size="13" font-weight="700" fill="#1b1a17">Up to 6 ft</text><text x="356" y="126" text-anchor="middle" ' + F + ' font-size="12" fill="#5b574f">fence allowed</text>' +
-      '<text x="160" y="176" text-anchor="middle" ' + S + ' font-size="12.5" font-weight="700" fill="#9b2c1f">42 in.</text><text x="280" y="176" text-anchor="middle" ' + S + ' font-size="12.5" font-weight="700" fill="#9b2c1f">42 in.</text>' +
-      '</svg><figcaption>Seen from above, not to scale. In the two triangles where the driveway meets the street, fences and hedges stay at 42 inches, so a driver backing out and someone walking by can see each other. Along the rest of the front, the Proposed change would allow 6 ft.</figcaption></figure>';
+      '<text x="84" y="110" text-anchor="middle" ' + F + ' font-size="13" font-weight="700" fill="#1b1a17">Hasta 6 pies</text><text x="84" y="126" text-anchor="middle" ' + F + ' font-size="12" fill="#5b574f">de cerca permitidos</text>' +
+      '<text x="356" y="110" text-anchor="middle" ' + F + ' font-size="13" font-weight="700" fill="#1b1a17">Hasta 6 pies</text><text x="356" y="126" text-anchor="middle" ' + F + ' font-size="12" fill="#5b574f">de cerca permitidos</text>' +
+      '<text x="160" y="176" text-anchor="middle" ' + S + ' font-size="12.5" font-weight="700" fill="#9b2c1f">42 pulg.</text><text x="280" y="176" text-anchor="middle" ' + S + ' font-size="12.5" font-weight="700" fill="#9b2c1f">42 pulg.</text>' +
+      '</svg><figcaption>Visto desde arriba, no a escala. En los dos triángulos donde la entrada de autos se encuentra con la calle, las cercas y los setos se quedan en 42 pulgadas, para que quien sale en reversa y quien pasa caminando puedan verse. A lo largo del resto del frente, el Cambio propuesto permitiría 6 pies.</figcaption></figure>';
   }
   function bars(f) {
     return '<figure><div class="bars"><div class="col"><div class="v">' + f.a[0] + '</div><div class="b" style="height:' + f.a[2] + 'px"></div></div>' +
       '<div class="col c"><div class="v">' + f.b[0] + '</div><div class="b" style="height:' + f.b[2] + 'px"></div></div></div><div class="ground"></div>' +
       '<div class="bars" style="border:0;background:none;padding-top:6px;align-items:flex-start"><div class="col"><div class="n">' + f.a[1] + '</div></div><div class="col c"><div class="n">' + f.b[1] + '</div></div></div>' +
-      '<figcaption>' + (f.note || 'To scale with each other.') + '</figcaption></figure>';
+      '<figcaption>' + (f.note || 'A escala entre sí.') + '</figcaption></figure>';
   }
 
   // Each icon's viewBox is cropped to its own strokes, so no hidden space sits beside it.
@@ -423,15 +432,15 @@
   };
   function topicScreen(t) {
     var a = state.ans[t.key] || '', idx = TOPICS.indexOf(t) + 1;
-    var h = progress() + '<section><div class="kicker">Rule ' + idx + ' of 4 &middot; ' + t.name + '</div><h2>' + t.title + '</h2>' +
-      '<div class="pair"><div class="says"><span class="tag">Altadena&rsquo;s rule today</span>' + t.today + '</div>' +
-      '<div class="says county"><span class="tag">Proposed change</span>' + t.county + '</div></div>' +
-      '<p class="means"><span class="tag">What it means</span>' + t.means + '</p>';
+    var h = progress() + '<section><div class="kicker">Regla ' + idx + ' of 4 &middot; ' + t.name + '</div><h2>' + t.title + '</h2>' +
+      '<div class="pair"><div class="says"><span class="tag">La regla actual de Altadena</span>' + t.today + '</div>' +
+      '<div class="says county"><span class="tag">Cambio propuesto</span>' + t.county + '</div></div>' +
+      '<p class="means"><span class="tag">Qué significa</span>' + t.means + '</p>';
     if (t.figure === 'yards') h += yardsFigure(); else if (t.figure) h += bars(t.figure);
     t.deeper.forEach(function (d) { h += '<details><summary>' + d[0] + '</summary><div>' + d[1] + '</div></details>'; });
-    if (t.procon) h += '<details><summary>Arguments for and against</summary><div class="procon"><div class="tag for">For the change</div><ul>' + t.procon[0].map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul><div class="tag against">Against the change</div><ul>' + t.procon[1].map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul><p class="small" style="margin:12px 0 0">Not a complete list.</p></div></details>';
-    h += '<details><summary>Read the rule itself</summary><div><p>The legal text, on the County&rsquo;s code website. Opens in a new tab.</p>' + codeList(t.links.map(function (l) { return [l[0], CODE[l[1]], l[2]]; })) + '</div></details>';
-    h += '<div class="vote"><div class="vote-tag">Your answer</div><div class="vote-body"><div class="lbl">' + t.q + '</div><div class="picks">';
+    if (t.procon) h += '<details><summary>Argumentos a favor y en contra</summary><div class="procon"><div class="tag for">A favor del cambio</div><ul>' + t.procon[0].map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul><div class="tag against">En contra del cambio</div><ul>' + t.procon[1].map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul><p class="small" style="margin:12px 0 0">La lista no es completa.</p></div></details>';
+    h += '<details><summary>Lea la regla misma</summary><div><p>El texto legal, en el sitio web del código del Condado. Se abre en una pestaña nueva.</p>' + codeList(t.links.map(function (l) { return [l[0], CODE[l[1]], l[2]]; })) + '</div></details>';
+    h += '<div class="vote"><div class="vote-tag">Su respuesta</div><div class="vote-body"><div class="lbl">' + t.q + '</div><div class="picks">';
     t.opts.forEach(function (o) {
       h += '<label class="pick ' + o[0] + '"><input type="radio" name="a-' + t.key + '" value="' + o[0] + '"' + (a === o[0] ? ' checked' : '') + '><span class="in">' + (o[0] === 'unsure' ? '' : ICON[o[0]]) + '<span>' + o[1] + '</span></span></label>';
     });
@@ -440,17 +449,17 @@
       if (o[0] === 'disagree' && a === 'disagree') {
         h += '<div class="more"><div class="lbl2">' + t.prompt + '</div>';
         if (t.parts) h += '<div class="chips">' + t.parts.map(function (p) { var on = (state.parts[t.key] || []).indexOf(p) >= 0; return '<label><input type="checkbox" data-part="' + t.key + '" value="' + p + '"' + (on ? ' checked' : '') + '>' + p + '</label>'; }).join('') + '</div>';
-        h += '<textarea id="note-' + t.key + '" rows="3" data-note="' + t.key + '" placeholder="Only themes reach the County, never your words or your name.">' + esc(state.notes[t.key] || '') + '</textarea></div>';
+        h += '<textarea id="note-' + t.key + '" rows="3" data-note="' + t.key + '" placeholder="Al Condado solo llegan los temas, nunca sus palabras ni su nombre.">' + esc(state.notes[t.key] || '') + '</textarea></div>';
       }
     });
     if (a !== 'disagree') {
       var open = state.showNote[t.key] || (state.notes[t.key] || '').trim();
       h += open
-        ? '<div class="more plain"><div class="lbl2">Anything you want to add about this rule? <span class="small" style="font-weight:400">(optional)</span></div><textarea id="note-' + t.key + '" rows="3" data-note="' + t.key + '" placeholder="Only themes reach the County, never your words or your name.">' + esc(state.notes[t.key] || '') + '</textarea></div>'
-        : '<p class="addnote"><a href="#" data-addnote="' + t.key + '">Add a comment</a> <span class="small">(optional)</span></p>';
+        ? '<div class="more plain"><div class="lbl2">¿Algo que quiera agregar sobre esta regla? <span class="small" style="font-weight:400">(opcional)</span></div><textarea id="note-' + t.key + '" rows="3" data-note="' + t.key + '" placeholder="Al Condado solo llegan los temas, nunca sus palabras ni su nombre.">' + esc(state.notes[t.key] || '') + '</textarea></div>'
+        : '<p class="addnote"><a href="#" data-addnote="' + t.key + '">Agregar un comentario</a> <span class="small">(opcional)</span></p>';
     }
     h += '</div></div></section>';
-    return h + nav(idx < 4 ? 'Next rule' : 'Continue');
+    return h + nav(idx < 4 ? 'Siguiente regla' : 'Continuar');
   }
 
   function screen() {
@@ -459,66 +468,74 @@
     if (topic) return topicScreen(topic);
     if (s === 'start') {
       h = head() +
-        '<section><h2>What&rsquo;s being decided</h2><p>LA County Planning is reviewing the building rules that are particular to Altadena and has proposed changes to four of them. These apply to lots zoned for single-family homes.</p><p>Nothing has been decided. The proposals are being brought to residents for comment first, and the process is expected to run well into 2027.</p>' +
-        '<div class="kicker" style="margin:16px 0 8px">Round 1 of 3</div><ul class="glance">' + TOPICS.map(function (t) { return '<li><b>' + t.name + '</b><span>' + t.title + '</span></li>'; }).join('') + '</ul></section>' +
-        '<section><h2>Why now</h2><p>' + WHY_NOW + '</p></section>' +
-        '<section><h2>Why your voice matters</h2><p>' + WHY_VOICE + '</p></section>' +
-        '<section><h2>Timeline</h2>' +
-        '<div class="rows"><div class="row"><b>Oct 2</b><span>Round opens</span></div><div class="row"><b>Oct 12</b><span>Round closes. You can change your answer until then.</span></div><div class="row"><b>Oct 15</b><span>Results go to the County&rsquo;s focus group, and back to you.</span></div><div class="row"><b>Oct 17</b><span>LA County Planning holds an Altadena listening session on land use and zoning, at The Collaboratory, 540 W Woodbury Rd. Open to everyone. <a href="https://planning.lacounty.gov/blog/altadena-listening-session/" target="_blank" rel="noopener">Details</a></span></div><div class="row"><b>2027</b><span>LA County Planning publishes a public draft and opens it for comment. That is where everyone can weigh in directly.</span></div></div></section>' +
-        '<section><h2>How your answer is handled</h2><div class="panel">' + PRIV + '</div></section>' +
-        '<div class="nav"><button type="button" class="btn" data-go="1">Start &middot; about 5 minutes</button></div>';
+        '<section><h2>Qué se está decidiendo</h2><p>Planificación del Condado de Los Ángeles está revisando las reglas de construcción que son particulares de Altadena y ha propuesto cambios a cuatro de ellas. Estas aplican a los lotes zonificados para viviendas unifamiliares.</p><p>Nada se ha decidido. Las propuestas se presentan primero a los residentes para que den su opinión, y se espera que el proceso se extienda hasta bien entrado 2027.</p>' +
+        '<div class="kicker" style="margin:16px 0 8px">Ronda 1 de 3</div><ul class="glance">' + TOPICS.map(function (t) { return '<li><b>' + t.name + '</b><span>' + t.title + '</span></li>'; }).join('') + '</ul></section>' +
+        '<section><h2>Por qué ahora</h2><p>' + WHY_NOW + '</p></section>' +
+        '<section><h2>Por qué importa su voz</h2><p>' + WHY_VOICE + '</p></section>' +
+        '<section><h2>Calendario</h2>' +
+        '<div class="rows"><div class="row"><b>2 oct</b><span>Abre la ronda</span></div><div class="row"><b>12 oct</b><span>Cierra la ronda. Puede cambiar su respuesta hasta entonces.</span></div><div class="row"><b>15 oct</b><span>Los resultados van al grupo de enfoque del Condado y de vuelta a usted.</span></div><div class="row"><b>17 oct</b><span>Planificación del Condado de Los Ángeles realiza una sesión de escucha en Altadena sobre uso de suelo y zonificación, en The Collaboratory, 540 W Woodbury Rd. Abierta a todos. <a href="https://planning.lacounty.gov/blog/altadena-listening-session/" target="_blank" rel="noopener">Detalles</a></span></div><div class="row"><b>2027</b><span>Planificación del Condado de Los Ángeles publica un borrador público y lo abre a comentarios. Ahí todos pueden opinar directamente.</span></div></div></section>' +
+        '<section><h2>Cómo se maneja su respuesta</h2><div class="panel">' + PRIV + '</div></section>' +
+        '<div class="nav"><button type="button" class="btn" data-go="1">Comenzar &middot; unos 5 minutos</button></div>';
     } else if (s === 'most') {
-      h = progress() + '<section><div class="kicker">Across the four</div><h2>Which of these matters most on your block?</h2><p class="small">Tap in order of importance. Tap again to remove. You can stop at one.</p>' +
+      h = progress() + '<section><div class="kicker">Entre las cuatro</div><h2>¿Cuál de estas importa más en su cuadra?</h2><p class="small">Toque en orden de importancia. Toque de nuevo para quitar. Puede detenerse en una.</p>' +
         TOPICS.map(function (t) { var k = state.rank.indexOf(t.key); return '<button type="button" class="rank' + (k >= 0 ? ' on' : '') + '" data-rank="' + t.key + '"><span class="n">' + (k >= 0 ? k + 1 : '') + '</span><span><b>' + t.name + '</b>: ' + t.title.charAt(0).toLowerCase() + t.title.slice(1) + '</span></button>'; }).join('') +
-        '<div class="q"><label for="mostnote">Anything you want to add? <span class="small" style="font-weight:400">(optional)</span></label><textarea id="mostnote" rows="3" placeholder="Only themes reach the County, never your words or your name.">' + esc(state.mostNote) + '</textarea></div></section>' + nav('Continue');
+        '<div class="q"><label for="mostnote">¿Algo que quiera agregar? <span class="small" style="font-weight:400">(opcional)</span></label><textarea id="mostnote" rows="3" placeholder="Al Condado solo llegan los temas, nunca sus palabras ni su nombre.">' + esc(state.mostNote) + '</textarea></div></section>' + nav('Continuar');
     } else if (s === 'design') {
-      h = progress() + '<section><div class="kicker">In your own words</div><h2>Is anything in the design rules making rebuilding easier or harder for you?</h2>' +
-        '<p>The County also has Residential Design Standards for Single Units: rules for how a new house looks from the street, such as where the front door faces, porches and entries, windows, wall materials, and a tree in the front yard. They apply across the whole County. The County has said changes to them are unlikely and generally outside this project. It still wants to hear what people are running into.</p>' +
-        '<p class="small">Reference: ' + a(CODE.design, 'Residential Design Standards for Single Units') + ', County code &sect;22.140.520, part F. Opens in a new tab.</p>' +
-        '<div class="q"><label for="design">What would you like to see changed, or kept? <span class="small" style="font-weight:400">(optional)</span></label><textarea id="design" rows="4" placeholder="Only themes reach the County, never your words or your name.">' + esc(state.design) + '</textarea></div>' +
-        '<div class="q"><label for="other">Anything else the County should know about your block? <span class="small" style="font-weight:400">(optional)</span></label><textarea id="other" rows="3">' + esc(state.other) + '</textarea></div></section>' + nav('Continue');
+      h = progress() + '<section><div class="kicker">En sus propias palabras</div><h2>¿Hay algo en las reglas de diseño que le facilite o le dificulte reconstruir?</h2>' +
+        '<p>El Condado también tiene Normas de Diseño Residencial para Unidades Individuales: reglas sobre cómo se ve una casa nueva desde la calle, como hacia dónde da la puerta principal, los porches y las entradas, las ventanas, los materiales de las paredes y un árbol en el jardín delantero. Aplican en todo el Condado. El Condado ha dicho que es poco probable que cambien y que en general quedan fuera de este proyecto. Aun así quiere saber con qué se está topando la gente.</p>' +
+        '<p class="small">Referencia: ' + a(CODE.design, 'Normas de Diseño Residencial para Unidades Individuales') + ', código del Condado &sect;22.140.520, parte F. Se abre en una pestaña nueva.</p>' +
+        '<div class="q"><label for="design">¿Qué le gustaría que se cambiara, o que se mantuviera? <span class="small" style="font-weight:400">(opcional)</span></label><textarea id="design" rows="4" placeholder="Al Condado solo llegan los temas, nunca sus palabras ni su nombre.">' + esc(state.design) + '</textarea></div>' +
+        '<div class="q"><label for="other">¿Algo más que el Condado deba saber sobre su cuadra? <span class="small" style="font-weight:400">(opcional)</span></label><textarea id="other" rows="3">' + esc(state.other) + '</textarea></div></section>' + nav('Continuar');
     } else if (s === 'you') {
-      h = progress() + '<section><div class="kicker">About you</div><h2>Where in Altadena</h2>' +
+      h = progress() + '<section><div class="kicker">Sobre usted</div><h2>En qué parte de Altadena</h2>' +
         ((ZONES[linkZone()] && !state.pickZone)
-          ? '<div class="zonebox"><div><div class="small">From your captain&rsquo;s link</div><div style="font-weight:700">' + ZONES[linkZone()] + '</div></div><button type="button" class="linkbtn" data-pickzone="1">Not your zone?</button></div>'
-          : '<div class="q" style="margin-top:0"><label for="zonepick">Your zone</label><div class="zwrap"><select id="zonepick"><option value=""' + (state.zone ? '' : ' selected') + '>Choose your zone&hellip;</option>' + Object.keys(ZONES).map(function (z) { return '<option value="' + z + '"' + (z === state.zone ? ' selected' : '') + '>' + ZONES[z] + '</option>'; }).join('') + '<option value="unsure"' + (state.zone === 'unsure' ? ' selected' : '') + '>Not sure which zone</option></select><span class="zarrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></div><p class="small" style="margin-top:6px">Your captain&rsquo;s link fills this in. If you came another way, pick the zone you live in, or lived in before the fire.</p>' + (state.zone === 'unsure' ? '<label for="cross" style="display:block;font-weight:700;margin:12px 0 6px">Your nearest cross streets</label><input type="text" id="cross" placeholder="for example, Lake and Mariposa" value="' + esc(state.cross) + '"><p class="small" style="margin-top:6px">We use this to place your answer in a zone. It is not kept with your name.</p>' : '') + '</div>') +
-        '<label class="opt" style="margin-top:8px"><input type="checkbox" id="displaced"' + (state.displaced ? ' checked' : '') + '><span>I lived in Altadena before the fire and don&rsquo;t now. Use where I lived.</span></label>' +
-        '<div class="q"><div class="lbl">Your situation <span class="small" style="font-weight:400">(optional)</span></div>' +
+          ? '<div class="zonebox"><div><div class="small">Del enlace de su capitán</div><div style="font-weight:700">' + ZONES[linkZone()] + '</div></div><button type="button" class="linkbtn" data-pickzone="1">¿No es su zona?</button></div>'
+          : '<div class="q" style="margin-top:0"><label for="zonepick">Su zona</label><div class="zwrap"><select id="zonepick"><option value=""' + (state.zone ? '' : ' selected') + '>Elija su zona&hellip;</option>' + Object.keys(ZONES).map(function (z) { return '<option value="' + z + '"' + (z === state.zone ? ' selected' : '') + '>' + ZONES[z] + '</option>'; }).join('') + '<option value="unsure"' + (state.zone === 'unsure' ? ' selected' : '') + '>No estoy seguro(a) de cuál zona</option></select><span class="zarrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></div><p class="small" style="margin-top:6px">El enlace de su capitán llena esto automáticamente. Si llegó de otra manera, elija la zona donde vive, o donde vivía antes del incendio.</p>' + (state.zone === 'unsure' ? '<label for="cross" style="display:block;font-weight:700;margin:12px 0 6px">Su cruce de calles más cercano</label><input type="text" id="cross" placeholder="por ejemplo, Lake y Mariposa" value="' + esc(state.cross) + '"><p class="small" style="margin-top:6px">Usamos esto para ubicar su respuesta en una zona. No se guarda junto con su nombre.</p>' : '') + '</div>') +
+        '<label class="opt" style="margin-top:8px"><input type="checkbox" id="displaced"' + (state.displaced ? ' checked' : '') + '><span>Vivía en Altadena antes del incendio y ahora no. Usen el lugar donde vivía.</span></label>' +
+        '<div class="q"><div class="lbl">Su situación <span class="small" style="font-weight:400">(opcional)</span></div>' +
         SITUATIONS.map(function (g) { return '<div class="small" style="margin:8px 0 4px;font-weight:600">' + g[0] + '</div>' + g[1].map(function (v) { return '<label class="opt"><input type="radio" name="situation" value="' + v + '"' + (state.situation === v ? ' checked' : '') + '><span>' + v + '</span></label>'; }).join(''); }).join('') + '</div>' +
-        '<div class="q"><div class="lbl">Did you discuss these rules with your neighbors before answering?</div>' +
-        ['Yes, at a block gathering', 'Yes, informally', 'No'].map(function (v) { return '<label class="opt"><input type="radio" name="talked" value="' + v + '"' + (state.talked === v ? ' checked' : '') + '><span>' + v + '</span></label>'; }).join('') + '</div></section>' + nav('Continue');
+        '<div class="q"><div class="lbl">¿Habló de estas reglas con sus vecinos antes de responder?</div>' +
+        ['Sí, en una reunión de la cuadra', 'Sí, de manera informal', 'No'].map(function (v) { return '<label class="opt"><input type="radio" name="talked" value="' + v + '"' + (state.talked === v ? ' checked' : '') + '><span>' + v + '</span></label>'; }).join('') + '</div></section>' + nav('Continuar');
     } else if (s === 'send') {
-      h = progress() + '<section><div class="kicker">Last step</div><h2>Email or mobile number</h2><p class="small">We ask for an email or mobile number so we can count each person once and send you what happened. It is kept separately and deleted after the report-back.</p>' +
-        '<input type="text" id="contact" autocomplete="email" placeholder="you@example.com or 626 555 0100" value="' + esc(state.contact) + '">' +
+      h = progress() + '<section><div class="kicker">Último paso</div><h2>Correo electrónico o número de celular</h2><p class="small">Pedimos un correo electrónico o un número de celular para poder contar a cada persona una sola vez y enviarle lo que pasó. Se guarda por separado y se borra después del informe de resultados.</p>' +
+        '<input type="text" id="contact" autocomplete="email" placeholder="usted@ejemplo.com o 626 555 0100" value="' + esc(state.contact) + '">' +
         (state.err ? '<div class="err">' + state.err + '</div>' : '') +
-        '<div class="small" style="margin-top:14px">' + PRIV + '</div></section>' + nav('Send my answers');
+        '<div class="small" style="margin-top:14px">' + PRIV + '</div></section>' + nav('Enviar mis respuestas');
     } else if (s === 'done') {
       var rows = TOPICS.map(function (t) {
-        var a = state.ans[t.key], extra = (state.notes[t.key] || '').trim() ? ' + reason' : '';
-        var short = { agree: 'Agree', disagree: 'Disagree', unsure: 'No opinion' }[a] || 'No answer';
+        var a = state.ans[t.key], extra = (state.notes[t.key] || '').trim() ? ' + motivo' : '';
+        var short = { agree: 'De acuerdo', disagree: 'En desacuerdo', unsure: 'Sin opinión' }[a] || 'Sin respuesta';
         if (a === 'disagree' && (state.parts[t.key] || []).length) short += ' (' + state.parts[t.key].join(', ').toLowerCase() + ')';
         return [t.name, short + extra];
       });
-      if (state.rank.length) rows.push(['Matters most', state.rank.map(function (k) { return TOPICS.filter(function (t) { return t.key === k; })[0].name; }).join(', ')]);
-      if (state.design.trim() || state.other.trim() || state.mostNote.trim()) rows.push(['Written comments', 'Recorded, themes only']);
-      rows.push(['Counted for', zoneLabel() + (state.displaced ? ', where you lived' : '')]);
-      if (state.situation) rows.push(['Situation', state.situation]);
-      rows.push(['Came through', viaTag() === 'captain' ? 'Your captain&rsquo;s link' : viaTag() === 'open' ? 'The open link' : 'Partner link: ' + viaTag()]);
-      rows.push(['Contact', 'Kept separately']);
-      h = '<section style="padding-top:20px"><img class="logo" src="altagether-logo.png" alt="Altagether" width="512" height="150"><h1 style="font-size:30px">Your answers are in.</h1><ul class="tally">' + rows.map(function (r) { return '<li><span>' + r[0] + '</span><span class="a">' + r[1] + '</span></li>'; }).join('') + '</ul>' +
-        '<p style="margin-top:16px"><b>Changed your mind?</b> Come back to this page any time before Oct 12 and send again. We keep your latest answers only.</p>' +
-        '<div class="rows"><div class="row"><b>Oct 12</b><span>Round closes</span></div><div class="row"><b>Oct 15</b><span>Zone-by-zone results go to the County&rsquo;s focus group, and to you</span></div><div class="row"><b>Oct 17</b><span>LA County Planning holds an Altadena listening session on land use and zoning, at The Collaboratory, 540 W Woodbury Rd. Open to everyone. <a href="https://planning.lacounty.gov/blog/altadena-listening-session/" target="_blank" rel="noopener">Details</a></span></div><div class="row"><b>2027</b><span>LA County Planning publishes a public draft and opens it for comment</span></div></div>' +
-        '<div class="test"><b>This is a test run</b><div class="small" style="color:#3a3833;margin-top:6px">We are trying a new way of gathering input, block by block. Some of it will be rough. Afterward we will tell you how many people took part, zone by zone, what the County did with it, and what we would do differently.</div></div></section>' +
-        '<div class="nav"><button type="button" class="btn back" style="flex:1" data-restart="1">Start over</button></div>';
+      if (state.rank.length) rows.push(['Lo que más importa', state.rank.map(function (k) { return TOPICS.filter(function (t) { return t.key === k; })[0].name; }).join(', ')]);
+      if (state.design.trim() || state.other.trim() || state.mostNote.trim()) rows.push(['Comentarios escritos', 'Registrados, solo los temas']);
+      rows.push(['Contado para', zoneLabel() + (state.displaced ? ', donde vivía' : '')]);
+      if (state.situation) rows.push(['Situación', state.situation]);
+      rows.push(['Llegó por', viaTag() === 'captain' ? 'El enlace de su capitán' : viaTag() === 'open' ? 'El enlace abierto' : 'Enlace de socio: ' + viaTag()]);
+      rows.push(['Contacto', 'Guardado por separado']);
+      h = '<section style="padding-top:20px"><img class="logo" src="altagether-logo.png" alt="Altagether" width="512" height="150"><h1 style="font-size:30px">Sus respuestas quedaron registradas.</h1><ul class="tally">' + rows.map(function (r) { return '<li><span>' + r[0] + '</span><span class="a">' + r[1] + '</span></li>'; }).join('') + '</ul>' +
+        '<p style="margin-top:16px"><b>¿Cambió de opinión?</b> Vuelva a esta página en cualquier momento antes del 12 de octubre y envíe de nuevo. Solo guardamos sus respuestas más recientes.</p>' +
+        '<div class="rows"><div class="row"><b>12 oct</b><span>Cierra la ronda</span></div><div class="row"><b>15 oct</b><span>Los resultados, zona por zona, van al grupo de enfoque del Condado y a usted</span></div><div class="row"><b>17 oct</b><span>Planificación del Condado de Los Ángeles realiza una sesión de escucha en Altadena sobre uso de suelo y zonificación, en The Collaboratory, 540 W Woodbury Rd. Abierta a todos. <a href="https://planning.lacounty.gov/blog/altadena-listening-session/" target="_blank" rel="noopener">Detalles</a></span></div><div class="row"><b>2027</b><span>Planificación del Condado de Los Ángeles publica un borrador público y lo abre a comentarios</span></div></div>' +
+        '<div class="test"><b>Esto es una prueba</b><div class="small" style="color:#3a3833;margin-top:6px">Estamos probando una nueva manera de recoger opiniones, cuadra por cuadra. Parte de esto será imperfecto. Después le diremos cuántas personas participaron, zona por zona, qué hizo el Condado con ello y qué haríamos diferente.</div></div></section>' +
+        '<div class="nav"><button type="button" class="btn back" style="flex:1" data-restart="1">Empezar de nuevo</button></div>';
     }
     return h;
   }
 
-  var SIM = 'captain';
-  function linkZone() { if (LINK_ZONE) return LINK_ZONE; return SIM === 'captain' ? '129' : ''; }
-  function viaTag() { return PARAMS.get('via') || (SIM === 'partner' ? 'mytriberise' : (linkZone() ? 'captain' : 'open')); }
+  function linkZone() { return LINK_ZONE; }
+  function viaTag() { return PARAMS.get('via') || (LINK_ZONE ? 'captain' : 'open'); }
   function zoneValue() { if (state.zone === 'unsure') return state.cross.trim() ? 'unsure: ' + state.cross.trim() : ''; return state.zone || (ZONES[linkZone()] ? linkZone() : ''); }
-  function zoneLabel() { var z = zoneValue(); return z.indexOf('unsure') === 0 ? 'Your cross streets, to be placed in a zone by us' : (ZONES[z] || 'Zone ' + z); }
+  function zoneLabel() { var z = zoneValue(); return z.indexOf('unsure') === 0 ? 'Su cruce de calles, que nosotros ubicaremos en una zona' : (ZONES[z] || 'Zona ' + z); }
+  function submitAnswers() {
+    var d = new URLSearchParams();
+    function put(k, v) { if (ENTRY[k]) d.set(ENTRY[k], v == null ? '' : String(v)); }
+    put('zone', zoneValue()); put('via', viaTag()); put('displaced', state.displaced ? 'Sí' : 'No'); put('situation', canon(state.situation));
+    TOPICS.forEach(function (t) { var a = state.ans[t.key] || ''; put(t.key, a ? canon(LABEL[t.key][a] || a) : ''); put(t.key + '_note', (state.notes[t.key] || '').trim()); if (t.parts) put(t.key + '_parts', (state.parts[t.key] || []).map(canon).join('; ')); });
+    put('rank', state.rank.join(' > ')); put('most_note', state.mostNote.trim()); put('design', state.design.trim()); put('other', state.other.trim()); put('talked', canon(state.talked)); put('contact', state.contact.trim());
+    if (DEMO) return Promise.resolve();
+    return fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body: d });
+  }
   function save() {
     var d = document.getElementById('design'), o = document.getElementById('other'), c = document.getElementById('contact'), x = document.getElementById('displaced');
     if (d) state.design = d.value; if (o) state.other = o.value; if (c) state.contact = c.value; if (x) state.displaced = x.checked;
@@ -527,121 +544,121 @@
     app.querySelectorAll('[data-note]').forEach(function (t) { state.notes[t.getAttribute('data-note')] = t.value; });
   }
   function about() {
-    return '<section style="padding-top:24px"><div class="kicker">More information</div><h2>About this survey</h2>' +
-      '<p>Run by Altagether as its part of LA&nbsp;County&rsquo;s Altadena focus group, which asked its member organizations to bring back what their communities think. Open to everyone who lives in Altadena, or lived here before the fire.</p>' +
-      '<p>A group of Altadena organizations is reviewing these rules with County planners. Altagether has a seat, and brings what neighbors say, zone by zone, into the room.</p></section>' +
-      '<section><h2>How your answer is handled</h2><div class="panel">' + PRIV + '</div><p class="small" style="margin-top:8px">The County receives counts by zone, never names.</p></section>' +
-      '<section><h2>Questions</h2><p>Email <a href="mailto:input@altagether.org">input@altagether.org</a>.</p></section>' +
-      '<section><h2>Read the rules themselves</h2><p class="small">The legal text, on the County&rsquo;s websites. Each opens in a new tab.</p>' + codeList(ALLCODE) + '</section>' +
-      '<div class="test"><b>This is a test run</b><div class="small" style="color:#3a3833;margin-top:6px">We are trying a new way of gathering input, block by block. Some of it will be rough. Afterward we will tell you how many people took part, zone by zone, what the County did with it, and what we would do differently.</div></div>' +
-      '<div class="nav"><button type="button" class="btn back" style="flex:1" data-about="0">Back to the survey</button></div>';
+    return '<section style="padding-top:24px"><div class="kicker">Más información</div><h2>Sobre esta encuesta</h2>' +
+      '<p>Organizada por Altagether como su parte en el grupo de enfoque de Altadena del Condado de Los&nbsp;Ángeles, que pidió a sus organizaciones miembros traer de vuelta lo que piensan sus comunidades. Abierta a todas las personas que viven en Altadena, o que vivían aquí antes del incendio.</p>' +
+      '<p>Un grupo de organizaciones de Altadena está revisando estas reglas con los planificadores del Condado. Altagether tiene un asiento, y lleva a la mesa lo que dicen los vecinos, zona por zona.</p></section>' +
+      '<section><h2>Cómo se maneja su respuesta</h2><div class="panel">' + PRIV + '</div><p class="small" style="margin-top:8px">El Condado recibe conteos por zona, nunca nombres.</p></section>' +
+      '<section><h2>Preguntas</h2><p>Escriba a <a href="mailto:input@altagether.org">input@altagether.org</a>.</p></section>' +
+      '<section><h2>Lea las reglas mismas</h2><p class="small">El texto legal, en los sitios web del Condado. Cada uno se abre en una pestaña nueva.</p>' + codeList(ALLCODE) + '</section>' +
+      '<div class="test"><b>Esto es una prueba</b><div class="small" style="color:#3a3833;margin-top:6px">Estamos probando una nueva manera de recoger opiniones, cuadra por cuadra. Parte de esto será imperfecto. Después le diremos cuántas personas participaron, zona por zona, qué hizo el Condado con ello y qué haríamos diferente.</div></div>' +
+      '<div class="nav"><button type="button" class="btn back" style="flex:1" data-about="0">Volver a la encuesta</button></div>';
   }
   // ---------- Captain page ----------
   var ZONES = {
-    "1": "Zone 1 · West block of Punahou Street",
-    "2": "Zone 2 · Fairs Oaks and Calaveras",
-    "3": "Zone 3 · El Sereno & Figueroa",
-    "5": "Zone 5 · W Las Flores Dr / Glenrose",
-    "6": "Zone 6 · Pinecrest Near Eaton Gate",
-    "7": "Zone 7",
-    "8": "Zone 8 · Laurice Ave",
-    "9": "Zone 9 · Ventura & Lincoln",
-    "11": "Zone 11 · E Palm and Ewing",
-    "14": "Zone 14 · Highview, North of Palm",
-    "15": "Zone 15",
-    "16": "Zone 16 · W Mariposa and Casitas",
-    "17": "Zone 17 · mcnally near loma alta",
-    "20": "Zone 20 · Glenrose & Loma Alta",
-    "21": "Zone 21 · Concha - between Lake and Marengo",
-    "22": "Zone 22",
-    "24": "Zone 24 · Navarro",
-    "25": "Zone 25 · Highland Ave",
-    "28": "Zone 28",
-    "29": "Zone 29 · Braeburn & Allen",
-    "30": "Zone 30 · Loma Alta & Fair Oaks",
-    "31": "Zone 31",
-    "33": "Zone 33 · Reever Way, La Corona, Laurel and part of Glenrose",
-    "34": "Zone 34 · Alegre lane",
-    "35": "Zone 35",
-    "37": "Zone 37 · Santa Rosa & E Pine St",
-    "38": "Zone 38 · E Las Flores Drive",
-    "39": "Zone 39",
-    "40": "Zone 40",
-    "42": "Zone 42 · Parkman Street - East of Farnsworth. One block only, between Lake and",
-    "46": "Zone 46 · Altadena & Olive",
-    "47": "Zone 47 · W Mariposa & Olive",
-    "48": "Zone 48 · Concha St/ Lake & Mount Curve",
-    "49": "Zone 49 · Loma Alta & Chaney Trail",
-    "50": "Zone 50 · Mariposa St between Glenrose & Fair Oaks",
-    "51": "Zone 51",
-    "52": "Zone 52",
-    "53": "Zone 53 · Bellaire",
-    "54": "Zone 54 · Harriet between Olive & Glen",
-    "55": "Zone 55 · Madison & Woodbury",
-    "59": "Zone 59 · E Poppyfields Dr / Mt Curve to Lake",
-    "60": "Zone 60 · E Poppyfields Dr / Marengo",
-    "61": "Zone 61 · E Palm between Marengo & Raymond, including both segments of Raymond,",
-    "62": "Zone 62",
-    "64": "Zone 64 · Glen Ave & W Harriet St",
-    "65": "Zone 65 · Marengo, East Side, North of Altadena Drive",
-    "69": "Zone 69",
-    "70": "Zone 70 · E. Loma Alta and Stonehill Drive",
-    "71": "Zone 71 · Rubio Highlands",
-    "72": "Zone 72 · Crawford Ave",
-    "74": "Zone 74 · Home @ Loma Alta/ Thurin. Business Altadena/ Glenrose",
-    "76": "Zone 76 · Tanoble between Altadena Dr and Loma Alta",
-    "77": "Zone 77 · Lake Ave & Athens",
-    "78": "Zone 78 · Highview & Mariposa",
-    "80": "Zone 80 · Mendocino between Raymond and Marengo, Visscher, E side of Raymond bet",
-    "81": "Zone 81 · Calanda (Between Altadena Dr + Palm)",
-    "82": "Zone 82 · Windfall and loma Alta",
-    "83": "Zone 83 · Morada Place (between Sinaloa, Allen)",
-    "84": "Zone 84",
-    "85": "Zone 85 · Marengo just north of Pentagon",
-    "86": "Zone 86 · East end of E Palm St",
-    "87": "Zone 87 · W Harriet St and Casitas",
-    "88": "Zone 88 · Palm & Santa Anita",
-    "90": "Zone 90 · Eastern side of Marathon Road",
-    "91": "Zone 91 · East Mendocino between Mar Vista Ave and Holliston Ave",
-    "92": "Zone 92",
-    "93": "Zone 93 · Minoru Dr",
-    "97": "Zone 97 · Lincoln Ave @ Mountain View",
-    "99": "Zone 99 · Midlothian Drive (New York to Midwick)",
-    "103": "Zone 103",
-    "104": "Zone 104 · Boston btwn MarVista & Holliston",
-    "106": "Zone 106 · Wapello St",
-    "108": "Zone 108 · Devirian Pl, West of Lincoln",
-    "109": "Zone 109",
-    "110": "Zone 110 · Olive Between Marigold & Poppyfields",
-    "111": "Zone 111 · La Paz Road near Allen Ave",
-    "112": "Zone 112",
-    "114": "Zone 114",
-    "115": "Zone 115 · Altadena Drive and St. James Place",
-    "117": "Zone 117 · Loma Alta & Thurin",
-    "118": "Zone 118 · Morada Pl, between Lake and El Molino",
-    "119": "Zone 119",
-    "120": "Zone 120",
-    "121": "Zone 121 · Santa Anita, between Altadena and Mariposa",
-    "122": "Zone 122 · Loma Alta / Lake",
-    "125": "Zone 125 · Chaney Trail, Leilani, Alzada",
-    "126": "Zone 126",
-    "127": "Zone 127",
-    "129": "Zone 129 · Morada b/t Mar Vista & Holliston + parts of Mar Vista & New York",
-    "130": "Zone 130",
-    "134": "Zone 134",
-    "135": "Zone 135",
-    "136": "Zone 136 · The Meadows",
-    "140": "Zone 140 · Mariposa St",
-    "141": "Zone 141",
-    "143": "Zone 143 · Lake b/t Alta Vista & Dolores",
-    "144": "Zone 144",
-    "145": "Zone 145 · Devirian Pl, East of Lincoln. Single-Family Residential zone, nearby s",
-    "146": "Zone 146",
-    "147": "Zone 147 · El Molino & Woodbury",
-    "148": "Zone 148",
-    "149": "Zone 149 · Sonoma Dr between Holliston & Mar Vista",
-    "150": "Zone 150",
-    "151": "Zone 151",
+    "1": "Zona 1 · West block of Punahou Street",
+    "2": "Zona 2 · Fairs Oaks and Calaveras",
+    "3": "Zona 3 · El Sereno & Figueroa",
+    "5": "Zona 5 · W Las Flores Dr / Glenrose",
+    "6": "Zona 6 · Pinecrest Near Eaton Gate",
+    "7": "Zona 7",
+    "8": "Zona 8 · Laurice Ave",
+    "9": "Zona 9 · Ventura & Lincoln",
+    "11": "Zona 11 · E Palm and Ewing",
+    "14": "Zona 14 · Highview, North of Palm",
+    "15": "Zona 15",
+    "16": "Zona 16 · W Mariposa and Casitas",
+    "17": "Zona 17 · mcnally near loma alta",
+    "20": "Zona 20 · Glenrose & Loma Alta",
+    "21": "Zona 21 · Concha - between Lake and Marengo",
+    "22": "Zona 22",
+    "24": "Zona 24 · Navarro",
+    "25": "Zona 25 · Highland Ave",
+    "28": "Zona 28",
+    "29": "Zona 29 · Braeburn & Allen",
+    "30": "Zona 30 · Loma Alta & Fair Oaks",
+    "31": "Zona 31",
+    "33": "Zona 33 · Reever Way, La Corona, Laurel and part of Glenrose",
+    "34": "Zona 34 · Alegre lane",
+    "35": "Zona 35",
+    "37": "Zona 37 · Santa Rosa & E Pine St",
+    "38": "Zona 38 · E Las Flores Drive",
+    "39": "Zona 39",
+    "40": "Zona 40",
+    "42": "Zona 42 · Parkman Street - East of Farnsworth. One block only, between Lake and",
+    "46": "Zona 46 · Altadena & Olive",
+    "47": "Zona 47 · W Mariposa & Olive",
+    "48": "Zona 48 · Concha St/ Lake & Mount Curve",
+    "49": "Zona 49 · Loma Alta & Chaney Trail",
+    "50": "Zona 50 · Mariposa St between Glenrose & Fair Oaks",
+    "51": "Zona 51",
+    "52": "Zona 52",
+    "53": "Zona 53 · Bellaire",
+    "54": "Zona 54 · Harriet between Olive & Glen",
+    "55": "Zona 55 · Madison & Woodbury",
+    "59": "Zona 59 · E Poppyfields Dr / Mt Curve to Lake",
+    "60": "Zona 60 · E Poppyfields Dr / Marengo",
+    "61": "Zona 61 · E Palm between Marengo & Raymond, including both segments of Raymond,",
+    "62": "Zona 62",
+    "64": "Zona 64 · Glen Ave & W Harriet St",
+    "65": "Zona 65 · Marengo, East Side, North of Altadena Drive",
+    "69": "Zona 69",
+    "70": "Zona 70 · E. Loma Alta and Stonehill Drive",
+    "71": "Zona 71 · Rubio Highlands",
+    "72": "Zona 72 · Crawford Ave",
+    "74": "Zona 74 · Home @ Loma Alta/ Thurin. Business Altadena/ Glenrose",
+    "76": "Zona 76 · Tanoble between Altadena Dr and Loma Alta",
+    "77": "Zona 77 · Lake Ave & Athens",
+    "78": "Zona 78 · Highview & Mariposa",
+    "80": "Zona 80 · Mendocino between Raymond and Marengo, Visscher, E side of Raymond bet",
+    "81": "Zona 81 · Calanda (Between Altadena Dr + Palm)",
+    "82": "Zona 82 · Windfall and loma Alta",
+    "83": "Zona 83 · Morada Place (between Sinaloa, Allen)",
+    "84": "Zona 84",
+    "85": "Zona 85 · Marengo just north of Pentagon",
+    "86": "Zona 86 · East end of E Palm St",
+    "87": "Zona 87 · W Harriet St and Casitas",
+    "88": "Zona 88 · Palm & Santa Anita",
+    "90": "Zona 90 · Eastern side of Marathon Road",
+    "91": "Zona 91 · East Mendocino between Mar Vista Ave and Holliston Ave",
+    "92": "Zona 92",
+    "93": "Zona 93 · Minoru Dr",
+    "97": "Zona 97 · Lincoln Ave @ Mountain View",
+    "99": "Zona 99 · Midlothian Drive (New York to Midwick)",
+    "103": "Zona 103",
+    "104": "Zona 104 · Boston btwn MarVista & Holliston",
+    "106": "Zona 106 · Wapello St",
+    "108": "Zona 108 · Devirian Pl, West of Lincoln",
+    "109": "Zona 109",
+    "110": "Zona 110 · Olive Between Marigold & Poppyfields",
+    "111": "Zona 111 · La Paz Road near Allen Ave",
+    "112": "Zona 112",
+    "114": "Zona 114",
+    "115": "Zona 115 · Altadena Drive and St. James Place",
+    "117": "Zona 117 · Loma Alta & Thurin",
+    "118": "Zona 118 · Morada Pl, between Lake and El Molino",
+    "119": "Zona 119",
+    "120": "Zona 120",
+    "121": "Zona 121 · Santa Anita, between Altadena and Mariposa",
+    "122": "Zona 122 · Loma Alta / Lake",
+    "125": "Zona 125 · Chaney Trail, Leilani, Alzada",
+    "126": "Zona 126",
+    "127": "Zona 127",
+    "129": "Zona 129 · Morada b/t Mar Vista & Holliston + parts of Mar Vista & New York",
+    "130": "Zona 130",
+    "134": "Zona 134",
+    "135": "Zona 135",
+    "136": "Zona 136 · The Meadows",
+    "140": "Zona 140 · Mariposa St",
+    "141": "Zona 141",
+    "143": "Zona 143 · Lake b/t Alta Vista & Dolores",
+    "144": "Zona 144",
+    "145": "Zona 145 · Devirian Pl, East of Lincoln. Single-Family Residential zone, nearby s",
+    "146": "Zona 146",
+    "147": "Zona 147 · El Molino & Woodbury",
+    "148": "Zona 148",
+    "149": "Zona 149 · Sonoma Dr between Holliston & Mar Vista",
+    "150": "Zona 150",
+    "151": "Zona 151",
     "alpine-villa": "Alpine Villa · Ellington Villa Drive",
     "alta-curve": "Alta Curve · Alta Pine between Lake and Mount Curve",
     "florecita-farms": "Florecita Farms · Florecita Drive & Florecita Lane",
@@ -669,10 +686,10 @@
       '<p><b>You are how your block hears about it.</b></p></section>' +
       '<section><h2>What we&rsquo;re asking of you</h2><ol class="steps"><li><b>Send your zone&rsquo;s link</b> to your neighbors on October 2.</li><li><b>Remind them once,</b> around October 8.</li><li><b>Pass on the results</b> when we send them, after October 15.</li></ol>' +
       '<div class="panel" style="margin-top:12px">About 15 minutes in all. You don&rsquo;t need to know the rules, explain them, or take a side. Everything a neighbor needs is on the survey page.</div></section>' +
-      '<section><h2>Your zone&rsquo;s link</h2><div class="q" style="margin-top:0"><label for="czone">Pick your zone</label><div class="zwrap"><select id="czone"><option value=""' + (picked ? '' : ' selected') + '>Choose your zone&hellip;</option>' + Object.keys(ZONES).map(function (z) { return '<option value="' + z + '"' + (z === czone ? ' selected' : '') + '>' + ZONES[z] + '</option>'; }).join('') + '</select><span class="zarrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></div></div>' +
+      '<section><h2>Your zone&rsquo;s link</h2><div class="q" style="margin-top:0"><label for="czone">Pick your zone</label><div class="zwrap"><select id="czone"><option value=""' + (picked ? '' : ' selected') + '>Elija su zona&hellip;</option>' + Object.keys(ZONES).map(function (z) { return '<option value="' + z + '"' + (z === czone ? ' selected' : '') + '>' + ZONES[z] + '</option>'; }).join('') + '</select><span class="zarrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></div></div>' +
       (picked ? '' : '<p class="small" style="margin-top:10px">Choose your zone to get your link, your QR code and a message you can send.</p></section>') +
       (!picked ? '' : '<div class="linkbox" style="margin-top:12px"><div class="qr">' + qr + '</div><div class="url">' + url + '</div><button type="button" class="btn slim" data-copy="https://' + url + '">Copy link</button>' +
-      '</div></section>' +
+      '<div class="small">Example address. The real one is not settled yet.</div></div></section>' +
       '<section><h2>A message you can send</h2><div class="small" style="margin-bottom:4px">Suggested subject line</div><div class="msg" style="font-weight:700;margin-bottom:12px">' + esc(captainSubject()) + '</div><div class="small" style="margin-bottom:4px">Message</div><div class="msg">' + captainMsgHtml(url) + '</div><p class="small" style="margin:6px 0 0">Use the Copy button rather than selecting the text, so your email keeps its own font.</p><div class="nav" style="margin-top:10px"><button type="button" class="btn slim" data-copy="' + esc(captainSubject()) + '">Copy subject</button><button type="button" class="btn slim" data-copy="' + esc(captainMsg(url)) + '" data-copyhtml="' + esc(captainMsgHtml(url)) + '">Copy message</button></div></section>') +
       '<section><h2>Round 1 dates</h2><p class="small">Round 1 of 3 &middot; rules for single-family homes</p><div class="rows"><div class="row"><b>Oct 2</b><span>Round 1 opens. Send your link.</span></div><div class="row"><b>Oct 8</b><span>One reminder, if you like.</span></div><div class="row"><b>Oct 12</b><span>Round 1 closes.</span></div><div class="row"><b>Oct 15</b><span>Round 1 results go to the County&rsquo;s focus group. You get your zone&rsquo;s page to pass on.</span></div><div class="row"><b>Oct 17</b><span>LA County Planning holds an Altadena listening session on land use and zoning, at The Collaboratory, 540 W Woodbury Rd. Worth telling your block about. <a href="https://planning.lacounty.gov/blog/altadena-listening-session/" target="_blank" rel="noopener">Details</a></span></div></div>' +
       '<h2 style="margin-top:22px">Coming next</h2><div class="rows"><div class="row"><b>Oct 29</b><span><b>Round 2</b> opens: the rest of Altadena&rsquo;s building rules. Closes before Nov 12.</span></div><div class="row"><b>Dec 3</b><span><b>Round 3</b> opens: rules for rebuilding after a disaster. Closes before Dec 17.</span></div></div><p class="small" style="margin-top:8px">You will get a new link for each round.</p></section>' +
@@ -681,7 +698,7 @@
       '<section><h2>The rules themselves</h2><p>For you, and for any neighbor who wants the legal text. Each opens in a new tab. The same links are on the survey page.</p>' + codeList(ALLCODE) + '</section>' +
       '<section><h2>When someone asks who sees this</h2><ul class="plain"><li>Answers go to Altagether. I don&rsquo;t see them.</li><li>The County gets counts by zone, never names.</li><li>Your email or number is kept separately and deleted after the results are sent back.</li></ul></section>' +
       '<section><h2>A neighbor without a phone</h2><p>Hand them yours and step away while they answer.</p></section>' +
-      '<section><h2>Questions</h2><p>Email <a href="mailto:input@altagether.org">input@altagether.org</a>.</p></section>' +
+      '<section><h2>Preguntas</h2><p>Escriba a <a href="mailto:input@altagether.org">input@altagether.org</a>.</p></section>' +
       (!picked ? '' : '<section><h2>Card to print</h2><div class="cardprev"><div><b>Four Altadena building rules that may change</b><div class="small" style="margin-top:6px">5 minutes &middot; closes Oct 12 &middot; ' + ZONES[czone] + '</div></div><div class="qr">' + qr + '</div></div></section>');
   }
 
@@ -698,7 +715,7 @@
     Object.keys(ZONES).forEach(function (z) {
       var r = rnd0(), n = z === '129' ? 26 : (r < .35 ? 0 : r < .6 ? 1 + Math.floor(rnd0() * 4) : 5 + Math.floor(rnd0() * 16));
       if (n === 0) return;
-      if (n >= 5) { AREAS.push(['Zone ' + zlabel(z), n]); ZONE_AREA[z] = AREAS.length - 1; AREA_ZONES.push([z]); ALONE++; }
+      if (n >= 5) { AREAS.push(['Zona ' + zlabel(z), n]); ZONE_AREA[z] = AREAS.length - 1; AREA_ZONES.push([z]); ALONE++; }
       else { var t = TRACT_OF[z] || 'other'; (pools[t] = pools[t] || []).push([z, n]); }
     });
     // A pool under five answers is no protection, so those are merged across tracts into one group.
@@ -717,7 +734,7 @@
   })();
   var BASEP = { yards: [.37, .56], height: [.39, .55], fences: [.55, .40], parking: [.60, .33] };
   var CATS = ['county', 'keep', 'unsure'];
-  var CATNAME = { county: 'Agree with the Proposed change', keep: 'Disagree', unsure: 'No opinion' };
+  var CATNAME = { county: 'Agree with the Proposed change', keep: 'En desacuerdo', unsure: 'Sin opinión' };
   var seed = 7;
   function rnd() { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; }
   function clamp(v) { return Math.max(.06, Math.min(.8, v)); }
@@ -734,11 +751,11 @@
     tot.n = N; tot.name = 'All of Altadena'; TOTAL[t.key] = tot;
   });
   function pct(v, n) { return Math.round(v / n * 100); }
-  function stack(r) { return '<div class="stack" role="img" aria-label="' + CATS.map(function (x) { return plain(CATNAME[x]) + ' ' + pct(r[x], r.n) + ' percent'; }).join(', ') + '">' + CATS.map(function (x) { return r[x] ? '<i class="c-' + x + '" style="width:' + (r[x] / r.n * 100) + '%" title="' + plain(CATNAME[x]) + ': ' + r[x] + ' of ' + r.n + '"></i>' : ''; }).join('') + '</div>'; }
+  function stack(r) { return '<div class="stack" role="img" aria-label="' + CATS.map(function (x) { return plain(CATNAME[x]) + ' ' + pct(r[x], r.n) + ' percent'; }).join(', ') + '">' + CATS.map(function (x) { return r[x] ? '<i class="c-' + x + '" style="width:' + (r[x] / r.n * 100) + '%" title="' + plain(CATNAME[x]) + ': ' + r[x] + ' de ' + r.n + '"></i>' : ''; }).join('') + '</div>'; }
   function brow(r, cls) { var nm = (r.idx !== undefined && cls !== 'all') ? '<a href="#resident" data-area="' + r.idx + '">' + r.name + '</a>' : r.name; return '<div class="brow' + (cls ? ' ' + cls : '') + '"><div class="nm">' + nm + '</div>' + stack(r) + '<div class="nn">' + r.n + '</div></div>'; }
   function legend() { return '<div class="legend">' + CATS.map(function (x) { return '<span><i class="c-' + x + '"></i>' + CATNAME[x] + '</span>'; }).join('') + '<span style="color:#5b574f">Number at right: people who answered</span></div>'; }
   var THEMES = [['The cost of a covered garage when rebuilding on a tight budget', 38], ['Keeping the look of the street where houses sit well back', 33], ['Privacy and light between houses if back yards shrink', 29], ['Safety and privacy as the reason for a taller front fence', 24], ['Permits held up by design rules for entries, windows and materials', 21], ['How big a house can be', 17]];
-  var RANKS = [['Yards', 71], ['Fences', 46], ['Height', 39], ['Parking', 25]];
+  var RANKS = [['Jardines', 71], ['Cercas', 46], ['Altura', 39], ['Estacionamiento', 25]];
   // Census tracts: the seven that cover Altadena's captain zones. Weights and household shares are invented.
   var TRACTS = [['4601', 'East of Lake, north', 23, .17, .16], ['4602', 'Central, north of Altadena Dr', 33, .25, .20], ['4603.01', 'West, north of Loma Alta', 18, .10, .15], ['4603.02', 'West, south of Loma Alta', 16, .09, .14],
     ['4610', 'Southwest, Lincoln corridor', 7, .06, .11], ['4611', 'Central, south', 12, .15, .12], ['4612', 'East of Lake, south', 11, .18, .12]];
@@ -754,15 +771,15 @@
   function tractRow(key, id) { return TDATA[key].filter(function (r) { return r.tract === id; })[0]; }
   // Editorial themes: two readers group every comment, then write one line per theme. Counts are invented.
   var COMMENT_THEMES = [
-    ['Yards', [['Privacy and light between houses', 'Neighbors worry that a 5 ft side yard puts windows and walls too close, especially on narrow lots.', 29],
+    ['Jardines', [['Privacy and light between houses', 'Neighbors worry that a 5 ft side yard puts windows and walls too close, especially on narrow lots.', 29],
                ['Keeping the look of the street', 'Several want houses to keep sitting well back from the street, as most of the block does today.', 33],
                ['Room to rebuild', 'Owners of small lots welcome a shallower back yard because it makes a rebuild fit.', 17]]],
-    ['Height', [['Views and sun', 'A taller house next door could block hillside views and shade a garden.', 21],
+    ['Altura', [['Views and sun', 'A taller house next door could block hillside views and shade a garden.', 21],
                 ['Two stories is the real limit', 'Many say 35 ft is fine as long as the two-story limit stays.', 14]]],
-    ['Fences', [['Safety and privacy', 'A taller front fence is wanted for security while blocks stand half empty.', 24],
+    ['Cercas', [['Safety and privacy', 'A taller front fence is wanted for security while blocks stand half empty.', 24],
                 ['The feel of the street', 'Others fear a wall of 6 ft fences will close the street in.', 18],
                 ['See-through or not', 'People ask whether a tall fence must still be see-through, and want that settled.', 9]]],
-    ['Parking', [['The cost of a covered garage', 'Two covered spaces is a real expense for people rebuilding on a tight budget.', 38],
+    ['Estacionamiento', [['The cost of a covered garage', 'Two covered spaces is a real expense for people rebuilding on a tight budget.', 38],
                  ['Street parking', 'Some welcome covered spaces because street parking is already tight.', 11]]],
     ['Across the four, and in your own words', [['Design rules and permits', 'Permits held up by rules on entries, windows and materials, which the County did not list.', 21],
                  ['How big a house can be', 'Questions about floor area, which is not among the four changes.', 17],
@@ -805,7 +822,7 @@
       '<div class="tscroll"><table class="themes"><colgroup><col style="width:32%"><col><col style="width:88px"></colgroup><thead><tr><th>Theme</th><th>What people said</th><th class="num">Comments</th></tr></thead><tbody>' +
       COMMENT_THEMES.map(function (g) { return '<tr class="grp"><td colspan="3">' + g[0] + '</td></tr>' + g[1].map(function (r) { return '<tr><td><b>' + r[0] + '</b></td><td>' + r[1] + '</td><td class="num">' + r[2] + '</td></tr>'; }).join(''); }).join('') + '</tbody></table></div></section>' +
       '<section><h2>8 &middot; Who answered</h2><div class="tscroll"><table><thead><tr><th>Situation</th><th class="num">People</th><th class="num">Share</th></tr></thead><tbody>' +
-      [['Owner, rebuilding', 58], ['Owner, home standing', 49], ['Owner, displaced', 27], ['Owner, rebuilt and back', 14], ['Renter', 12], ['Displaced, not sure', 9], ['Did not say', 12]].map(function (r) { return '<tr><td>' + r[0] + '</td><td class="num">' + r[1] + '</td><td class="num">' + pct(r[1], N) + '%</td></tr>'; }).join('') + '</tbody></table></div>' +
+      [['Owner, rebuilding', 58], ['Owner, home standing', 49], ['Owner, displaced', 27], ['Owner, rebuilt and back', 14], ['Renter', 12], ['Desplazado(a), no estoy seguro(a)', 9], ['Did not say', 12]].map(function (r) { return '<tr><td>' + r[0] + '</td><td class="num">' + r[1] + '</td><td class="num">' + pct(r[1], N) + '%</td></tr>'; }).join('') + '</tbody></table></div>' +
       '<h3>Where answers came from</h3><div class="tscroll"><table><thead><tr><th>Area</th><th class="num">Share of answers</th><th class="num">Share of households</th></tr></thead><tbody><tr><td>West Altadena (tracts 4603.01, 4603.02, 4610)</td><td class="num">' + pct(TN[2] + TN[3] + TN[4], N) + '%</td><td class="num">' + Math.round((TRACTS[2][4] + TRACTS[3][4] + TRACTS[4][4]) * 100) + '%</td></tr><tr><td>East and central Altadena (tracts 4601, 4602, 4611, 4612)</td><td class="num">' + pct(TN[0] + TN[1] + TN[5] + TN[6], N) + '%</td><td class="num">' + Math.round((TRACTS[0][4] + TRACTS[1][4] + TRACTS[5][4] + TRACTS[6][4]) * 100) + '%</td></tr></tbody></table></div><p class="small" style="margin-top:8px">West Altadena is under-represented in this round. Read the totals with that in mind. Section 5 has the full breakdown by tract.</p></section>' +
       '<section><h2>9 &middot; How this was done, and its limits</h2><div class="tscroll"><table><tbody>' +
       [['Answers received', '203'], ['Repeat answers from the same person, latest kept', '17'], ['Answers with no usable email or number, set aside', '5'], ['Answers counted', String(N)], ['Entered with help, by someone other than the zone&rsquo;s captain', '6'], ['Groups of near-identical answers flagged', '1 group of 4. Counted, and noted here']].map(function (r) { return '<tr><td>' + r[0] + '</td><td class="num">' + r[1] + '</td></tr>'; }).join('') + '</tbody></table></div>' +
@@ -839,7 +856,7 @@
       if (u >= 30) note += ' Many here were not sure, which usually means the change needs explaining more than deciding.';
       var mine = { county: r.county, keep: r.keep, unsure: r.unsure, n: r.n, name: Who }, all = { county: T.county, keep: T.keep, unsure: T.unsure, n: T.n, name: 'All of Altadena' };
       var tr = tract ? tractRow(t.key, tract) : null, mytract = tr ? { county: tr.county, keep: tr.keep, unsure: tr.unsure, n: tr.n, name: 'Your census tract (' + tract + ')' } : null;
-      h += '<section><h2>' + t.name + '</h2><p><b>' + r[top] + ' of ' + r.n + '</b> ' + (pooled ? 'in these zones' : 'on your block') + ' ' + (top === 'county' ? 'agreed with the Proposed change' : 'disagreed with the Proposed change') + '. Across Altadena, ' + pct(T[top], N) + '% did. ' + note + '</p>' + brow(mine) + (mytract ? brow(mytract) : '') + brow(all) + '</section>';
+      h += '<section><h2>' + t.name + '</h2><p><b>' + r[top] + ' de ' + r.n + '</b> ' + (pooled ? 'in these zones' : 'on your block') + ' ' + (top === 'county' ? 'agreed with the Proposed change' : 'disagreed with the Proposed change') + '. Across Altadena, ' + pct(T[top], N) + '% did. ' + note + '</p>' + brow(mine) + (mytract ? brow(mytract) : '') + brow(all) + '</section>';
     });
     // The block's own comment themes: the Altadena themes, with counts scaled to this area. Invented, like the rest.
     var share = AREAS[zi][1] / N;
@@ -853,7 +870,7 @@
   }
 
   // ---------- Views ----------
-  var VIEWS = ['topic', 'form', 'captain', 'county', 'resident'];
+  var VIEWS = ['topic', 'form'];
   var view = 'topic';
   function setView(v, scroll) {
     if (VIEWS.indexOf(v) < 0) return;
@@ -864,7 +881,7 @@
     render(scroll);
   }
   function render(scroll) {
-    var foot = '<div class="foot"><a href="#about" data-about="1">More about this survey</a></div>';
+    var foot = '<div class="foot"><a href="#about" data-about="1">Más sobre esta encuesta</a></div>';
     if (view === 'topic' || view === 'form') { view = state.step === 0 ? 'topic' : 'form'; app.innerHTML = state.about ? about() : screen() + foot; }
     else if (view === 'captain') app.innerHTML = captain();
     else if (view === 'county') app.innerHTML = countyReport();
@@ -896,17 +913,17 @@
     if (cc) {
       var o = document.getElementById('csvout'), w = cc.textContent;
       var fin = function (m) { cc.textContent = m; setTimeout(function () { cc.textContent = w; }, 1600); };
-      try { navigator.clipboard.writeText(o.value).then(function () { fin('Copied'); }, function () { o.focus(); o.select(); fin('Selected. Press copy'); }); } catch (err) { o.focus(); o.select(); fin('Selected. Press copy'); }
+      try { navigator.clipboard.writeText(o.value).then(function () { fin('Copiado'); }, function () { o.focus(); o.select(); fin('Seleccionado. Presione copiar'); }); } catch (err) { o.focus(); o.select(); fin('Seleccionado. Presione copiar'); }
       return;
     }
     var cp = e.target.closest('[data-copy]');
     if (cp) {
       var txt = cp.getAttribute('data-copy'), html = cp.getAttribute('data-copyhtml'), was = cp.textContent;
       var done = function (m) { cp.textContent = m; setTimeout(function () { cp.textContent = was; }, 1600); };
-      var plain = function () { try { navigator.clipboard.writeText(txt).then(function () { done('Copied'); }, function () { done('Select the text above to copy'); }); } catch (err) { done('Select the text above to copy'); } };
+      var plain = function () { try { navigator.clipboard.writeText(txt).then(function () { done('Copiado'); }, function () { done('Seleccione el texto de arriba para copiarlo'); }); } catch (err) { done('Seleccione el texto de arriba para copiarlo'); } };
       if (html && window.ClipboardItem) {
         var wrapped = '<div style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.4; color: #000">' + html.split('<br><br>').map(function (para) { return '<p style="margin: 0 0 1em">' + para + '</p>'; }).join('') + '</div>';
-        try { navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([wrapped], { type: 'text/html' }), 'text/plain': new Blob([txt], { type: 'text/plain' }) })]).then(function () { done('Copied'); }, plain); } catch (err) { plain(); }
+        try { navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([wrapped], { type: 'text/html' }), 'text/plain': new Blob([txt], { type: 'text/plain' }) })]).then(function () { done('Copiado'); }, plain); } catch (err) { plain(); }
       } else plain();
       return;
     }
@@ -923,8 +940,11 @@
     var dir = +b.getAttribute('data-go');
     if (dir > 0 && STEPS[state.step] === 'send') {
       var v = state.contact.trim(), ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || v.replace(/\D/g, '').length >= 10;
-      if (!ok) { state.err = v ? 'That doesn&rsquo;t look like an email or a 10-digit phone number.' : 'We need one or the other to count your answers once.'; render(false); return; }
-      if (!zoneValue()) { state.err = state.zone === 'unsure' ? 'Please give your nearest cross streets on the previous screen.' : 'Please pick your zone on the previous screen.'; render(false); return; }
+      if (!ok) { state.err = v ? 'Eso no parece un correo electrónico ni un número de teléfono de 10 dígitos.' : 'Necesitamos uno u otro para contar sus respuestas una sola vez.'; render(false); return; }
+      if (!zoneValue()) { state.err = state.zone === 'unsure' ? 'Por favor indique su cruce de calles más cercano en la pantalla anterior.' : 'Por favor elija su zona en la pantalla anterior.'; render(false); return; }
+      state.err = ''; b.disabled = true; b.textContent = 'Enviando\\u2026';
+      submitAnswers().then(function () { state.step += 1; render(true); }, function () { state.err = 'No se pudo enviar. Revise su conexión e intente de nuevo.'; render(false); });
+      return;
     }
     state.err = '';
     state.step = Math.max(0, Math.min(STEPS.length - 1, state.step + dir));
@@ -944,27 +964,27 @@
   // Plain-text export of every line a resident would read, for editing elsewhere.
   function plain(html) { var d = document.createElement('div'); d.innerHTML = html.replace(/<li>/g, '\n  - ').replace(/<\/ul>/g, '\n'); return d.textContent.replace(/\n{3,}/g, '\n\n').trim(); }
   function wording() {
-    var out = ['ALTADENA THEME 1 ROUND. DRAFT WORDING, ' + 'September 30, 2026', '', 'TITLE', 'Four Altadena building rules that may change', '', 'WHY NOW', plain(WHY_NOW), '', 'WHY YOUR VOICE MATTERS', plain(WHY_VOICE), ''];
+    var out = ['ALTADENA TEMA 1 RONDA. TEXTO PRELIMINAR, ' + '30 de septiembre de 2026', '', 'TITLE', 'Cuatro reglas de construcción de Altadena que podrían cambiar', '', 'POR QUÉ AHORA', plain(WHY_NOW), '', 'POR QUÉ IMPORTA SU VOZ', plain(WHY_VOICE), ''];
     TOPICS.forEach(function (t, i) {
-      out.push('RULE ' + (i + 1) + ': ' + t.name.toUpperCase(), 'Heading: ' + plain(t.title), 'Today: ' + plain(t.today), 'LA County Planning is proposing: ' + plain(t.county), 'What it means: ' + plain(t.means));
-      t.deeper.forEach(function (d) { out.push('Go deeper, ' + plain(d[0]) + ': ' + plain(d[1])); });
-      if (t.procon) { out.push('Arguments for the change:'); t.procon[0].forEach(function (x) { out.push('  - ' + plain(x)); }); out.push('Arguments against the change:'); t.procon[1].forEach(function (x) { out.push('  - ' + plain(x)); }); }
-      out.push('Question: ' + plain(t.q));
+      out.push('RULE ' + (i + 1) + ': ' + t.name.toUpperCase(), 'Encabezado: ' + plain(t.title), 'Hoy: ' + plain(t.today), 'Planificación del Condado de Los Ángeles propone: ' + plain(t.county), 'Qué significa: ' + plain(t.means));
+      t.deeper.forEach(function (d) { out.push('Para profundizar, ' + plain(d[0]) + ': ' + plain(d[1])); });
+      if (t.procon) { out.push('Argumentos a favor del cambio:'); t.procon[0].forEach(function (x) { out.push('  - ' + plain(x)); }); out.push('Argumentos en contra del cambio:'); t.procon[1].forEach(function (x) { out.push('  - ' + plain(x)); }); }
+      out.push('Pregunta: ' + plain(t.q));
       t.opts.forEach(function (o) { out.push('  - ' + plain(o[1])); });
-      out.push('Add a comment (optional): free text, any answer');
+      out.push('Agregar un comentario (opcional): texto libre, cualquier respuesta');
       out.push('');
     });
-    SITUATIONS.forEach(function (g) { out.push('YOUR SITUATION (optional): ' + plain(g[0])); g[1].forEach(function (v) { out.push('  - ' + v); }); out.push(''); });
-    out.push('ACROSS THE FOUR', 'Which of these matters most on your block?', 'Add a comment (optional): free text', '', 'IN YOUR OWN WORDS', 'Is anything in the design rules making rebuilding easier or harder for you?', 'Anything else the County should know about your block?', '', 'PRIVACY', plain(PRIV));
+    SITUATIONS.forEach(function (g) { out.push('SU SITUACIÓN (opcional): ' + plain(g[0])); g[1].forEach(function (v) { out.push('  - ' + v); }); out.push(''); });
+    out.push('ENTRE LAS CUATRO', '¿Cuál de estas importa más en su cuadra?', 'Agregar un comentario (opcional): texto libre', '', 'EN SUS PROPIAS PALABRAS', '¿Hay algo en las reglas de diseño que le facilite o le dificulte reconstruir?', '¿Algo más que el Condado deba saber sobre su cuadra?', '', 'PRIVACY', plain(PRIV));
     return out.join('\n');
   }
   (document.getElementById('copy') || document.createElement('div')).addEventListener('click', function () {
     var b = this, text = wording();
-    function show() { var t = document.getElementById('copyout'); if (!t) { t = document.createElement('textarea'); t.id = 'copyout'; t.readOnly = true; app.appendChild(t); } t.value = text; t.focus(); t.select(); b.textContent = 'Select and copy below'; }
-    function ok() { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy survey wording'; }, 1600); }
+    function show() { var t = document.getElementById('copyout'); if (!t) { t = document.createElement('textarea'); t.id = 'copyout'; t.readOnly = true; app.appendChild(t); } t.value = text; t.focus(); t.select(); b.textContent = 'Seleccione y copie abajo'; }
+    function ok() { b.textContent = 'Copiado'; setTimeout(function () { b.textContent = 'Copiar el texto de la encuesta'; }, 1600); }
     try { navigator.clipboard.writeText(text).then(ok, show); } catch (err) { show(); }
   });
 
-  setView('captain', false);
+  render(false);
 })();
 </script>
