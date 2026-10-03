@@ -257,10 +257,11 @@
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
   [hidden] { display: none !important; }
-  .vote .pick { height: auto; min-height: 54px; padding: 8px 6px; line-height: 1.15; text-align: center; }
-  .vote .pick .in { line-height: 1.15; min-width: 0; }
-  .vote .pick .in > span { line-height: 1.15; overflow-wrap: anywhere; }
-  @media (max-width: 380px) { .vote .picks { grid-template-columns: 1fr; } .vote .pick { min-height: 48px; } }
+  .vote .picks { grid-template-columns: 1fr; gap: 8px; }
+  .vote .pick { height: 54px; padding: 0 16px; justify-content: flex-start; }
+  .vote .pick .in { justify-content: flex-start; gap: 12px; transform: none; }
+  .vote .pick .ic { height: 15px; }
+  .vote .pick.unsure .in { padding-left: 29px; }
   #copyout { width: 100%; min-height: 200px; margin-top: 10px; font-size: 14px; }
 </style>
 
