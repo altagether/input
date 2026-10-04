@@ -520,6 +520,7 @@
       rows.push(['Llegó por', viaLabel()]);
       rows.push(['Contacto', 'Guardado por separado']);
       h = '<section style="padding-top:20px"><img class="logo" src="altagether-logo.png" alt="Altagether" width="512" height="150"><h1 style="font-size:30px">Sus respuestas quedaron registradas.</h1><ul class="tally">' + rows.map(function (r) { return '<li><span>' + r[0] + '</span><span class="a">' + r[1] + '</span></li>'; }).join('') + '</ul>' +
+        '<p style="margin-top:16px"><b>Esta fue la Ronda 1 de 3.</b> La Ronda 2 cubre el resto de las reglas de construcción de Altadena y abre el 29 de octubre, con un enlace nuevo.</p>' +
         '<p style="margin-top:16px"><b>¿Cambió de opinión?</b> Vuelva a esta página en cualquier momento antes del 12 de octubre y envíe de nuevo. Solo guardamos sus respuestas más recientes.</p>' +
         '<div class="rows"><div class="row"><b>12 oct</b><span>Cierra la ronda</span></div><div class="row"><b>15 oct</b><span>Los resultados, zona por zona, van al grupo de enfoque del Condado y a usted</span></div><div class="row"><b>17 oct</b><span>Planificación del Condado de Los Ángeles realiza una sesión de escucha en Altadena sobre uso de suelo y zonificación, en The Collaboratory, 540 W Woodbury Rd. Abierta a todos. <a href="https://planning.lacounty.gov/blog/altadena-listening-session/" target="_blank" rel="noopener">Detalles</a></span></div><div class="row"><b>2027</b><span>Planificación del Condado de Los Ángeles publica un borrador público y lo abre a comentarios</span></div></div>' +
         '<div class="test"><b>Esto es una prueba</b><div class="small" style="color:#3a3833;margin-top:6px">Estamos probando una nueva manera de recoger opiniones, cuadra por cuadra. Parte de esto será imperfecto. Después le diremos cuántas personas participaron, zona por zona, qué hizo el Condado con ello y qué haríamos diferente.</div></div></section>' +
@@ -682,7 +683,7 @@
     try { var q = qrcode(0, 'M'); q.addData('https://' + url); q.make(); return q.createSvgTag({ cellSize: 4, margin: 2, scalable: true }); }
     catch (e) { return '<span class="small">QR code</span>'; }
   }
-  function captainSubject() { return '5 min survey \u2013 Altadena building rules may change'; }
+  function captainSubject() { return 'Round 1 of 3: yards, height, fences, parking \u2013 5 min survey'; }
   function captainMsgHtml(url) {
     return 'Hi neighbors,<br><br>LA County Planning has proposed changes to Altadena&rsquo;s building rules. Altagether is collecting what each block thinks and sharing it with the County. This is Round 1 of 3. Each round covers a different set of rules, and we are looking for your feedback on each of them.<br><br><b>Round 1 &ndash; Yards, house height, front fences, and parking:</b><br>https://' + url + '<br><br>The survey takes about 5 minutes and <b>closes October 12</b>.';
   }
