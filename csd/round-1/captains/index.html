@@ -268,7 +268,7 @@
 (function () {
   var PRIV = 'Only Altagether&rsquo;s survey team sees individual answers. Your captain does not, and the County never does.';
 
-  var WHY_NOW = 'The temporary rules the County put in place after the fire expire in the summer of 2027. LA County Planning is studying changes to the permanent rules this fall, with recommendations in early January 2027. After that, residents can comment on a written draft at public workshops.';
+  var WHY_NOW = 'The temporary rules the County put in place after the fire expire in the summer of 2027. LA County Planning is studying changes to the permanent rules this fall, with the focus group&rsquo;s recommendations due early next year. After that, residents can comment on a written draft at public workshops.';
   var WHY_VOICE = 'Nothing is decided yet. The rules will be the same across Altadena, but they will affect homes differently from one block to the next, so Altagether is gathering input block by block. This is a chance to say how the rules would work on lots and homes like yours.';
 
   var MUNI = 'https://library.municode.com/ca/los_angeles_county/codes/code_of_ordinances?nodeId=';
@@ -458,12 +458,12 @@
     if (topic) return topicScreen(topic);
     if (s === 'start') {
       h = head() +
-        '<section><h2>What&rsquo;s being decided</h2><p>LA County Planning is reviewing the building rules that are particular to Altadena and has proposed changes to four of them. These apply to lots zoned for single-family homes.</p><p>Nothing has been decided. The proposals are being brought to residents for comment first, and the process is expected to run well into 2027.</p>' +
+        '<section><h2>What&rsquo;s being decided</h2><p>LA County Planning is reviewing the building rules that are particular to Altadena and has proposed changes to four of them. These apply to lots zoned for single-family homes.</p><p>Nothing has been decided. The proposals are being brought to residents for comment first, and the process will take time.</p>' +
         '<div class="kicker" style="margin:16px 0 8px">Round 1 of 3</div><ul class="glance">' + TOPICS.map(function (t) { return '<li><b>' + t.name + '</b><span>' + t.title + '</span></li>'; }).join('') + '</ul></section>' +
         '<section><h2>Why now</h2><p>' + WHY_NOW + '</p></section>' +
         '<section><h2>Why your voice matters</h2><p>' + WHY_VOICE + '</p></section>' +
         '<section><h2>Timeline</h2>' +
-        '<div class="rows"><div class="row"><b>Oct 3</b><span>Round opens</span></div><div class="row"><b>Oct 12</b><span>Round closes. You can change your answer until then.</span></div><div class="row"><b>Oct 15</b><span>Results go to the County&rsquo;s focus group, and back to you.</span></div><div class="row"><b>Oct 17</b><span>LA County Planning holds an Altadena listening session on land use and zoning, at The Collaboratory, 540 W Woodbury Rd. Open to everyone. <a href="https://planning.lacounty.gov/blog/altadena-listening-session/" target="_blank" rel="noopener">Details</a></span></div><div class="row"><b>2027</b><span>LA County Planning publishes a public draft and opens it for comment. That is where everyone can weigh in directly.</span></div></div></section>' +
+        '<div class="rows"><div class="row"><b>Oct 3</b><span>Round opens</span></div><div class="row"><b>Oct 12</b><span>Round closes. You can change your answer until then.</span></div><div class="row"><b>Oct 15</b><span>Results go to the County&rsquo;s focus group, and back to you.</span></div><div class="row"><b>Oct 17</b><span>LA County Planning holds an Altadena listening session on land use and zoning, at The Collaboratory, 540 W Woodbury Rd. Open to everyone. <a href="https://planning.lacounty.gov/blog/altadena-listening-session/" target="_blank" rel="noopener">Details</a></span></div><div class="row"><b>Later</b><span>LA County Planning publishes a public draft and opens it for comment. That is where everyone can weigh in directly.</span></div></div></section>' +
         '<section><h2>How your answer is handled</h2><div class="panel">' + PRIV + '</div></section>' +
         '<div class="nav"><button type="button" class="btn" data-go="1">Start &middot; about 5 minutes</button></div>';
     } else if (s === 'most') {
@@ -508,7 +508,7 @@
       h = '<section style="padding-top:20px"><img class="logo" src="altagether-logo.png" alt="Altagether" width="512" height="150"><h1 style="font-size:30px">Your answers are in.</h1><ul class="tally">' + rows.map(function (r) { return '<li><span>' + r[0] + '</span><span class="a">' + r[1] + '</span></li>'; }).join('') + '</ul>' +
         '<p style="margin-top:16px"><b>This was Round 1 of 3.</b> Round 2 covers the rest of Altadena&rsquo;s building rules and opens October 29, with a new link.</p>' +
         '<p style="margin-top:16px"><b>Changed your mind?</b> Come back to this page any time before Oct 12 and send again. We keep your latest answers only.</p>' +
-        '<div class="rows"><div class="row"><b>Oct 12</b><span>Round closes</span></div><div class="row"><b>Oct 15</b><span>Zone-by-zone results go to the County&rsquo;s focus group, and to you</span></div><div class="row"><b>Oct 17</b><span>LA County Planning holds an Altadena listening session on land use and zoning, at The Collaboratory, 540 W Woodbury Rd. Open to everyone. <a href="https://planning.lacounty.gov/blog/altadena-listening-session/" target="_blank" rel="noopener">Details</a></span></div><div class="row"><b>2027</b><span>LA County Planning publishes a public draft and opens it for comment</span></div></div>' +
+        '<div class="rows"><div class="row"><b>Oct 12</b><span>Round closes</span></div><div class="row"><b>Oct 15</b><span>Zone-by-zone results go to the County&rsquo;s focus group, and to you</span></div><div class="row"><b>Oct 17</b><span>LA County Planning holds an Altadena listening session on land use and zoning, at The Collaboratory, 540 W Woodbury Rd. Open to everyone. <a href="https://planning.lacounty.gov/blog/altadena-listening-session/" target="_blank" rel="noopener">Details</a></span></div><div class="row"><b>Later</b><span>LA County Planning publishes a public draft and opens it for comment</span></div></div>' +
         '<div class="test"><b>This is a test run</b><div class="small" style="color:#3a3833;margin-top:6px">We are trying a new way of gathering input, block by block. Some of it will be rough. Afterward we will tell you how many people took part, zone by zone, what the County did with it, and what we would do differently.</div></div></section>' +
         '<div class="nav"><button type="button" class="btn back" style="flex:1" data-restart="1">Start over</button></div>';
     }
@@ -519,7 +519,7 @@
   function linkZone() { if (LINK_ZONE) return LINK_ZONE; return SIM === 'captain' ? '129' : ''; }
   function viaTag() { return PARAMS.get('via') || (SIM === 'partner' ? 'mytriberise' : (linkZone() ? 'captain' : 'open')); }
   function isDisplaced() { return /elsewhere/.test(state.situation); }
-  var PARTNER_NAMES = { mytriberise: 'My TRIBE Rise', denariseup: 'Dena Rise Up', altadenarising: 'Altadena Rising', projectpassion: 'Project Passion', denaheals: 'Dena Heals', lavoice: 'LA Voice', towncouncil: 'Altadena Town Council', chamber: 'Chamber of Commerce', rotary: 'Rotary', altadenagreen: 'Altadena Green', altadenawild: 'AltadenaWILD', collective: 'Altadena Collective', dayone: 'Day One', efc: 'Eaton Fire Collaborative', colab: 'Altadena CoLab', heritage: 'Altadena Heritage', fairoaks: 'Fair Oaks cross-block group', elders: 'Elder gathering', county: 'the County website', newsletter: 'the Altagether newsletter', discord: 'Discord', instagram: 'Instagram', flyer: 'a printed flyer' };
+  var PARTNER_NAMES = { mytriberise: 'My TRIBE Rise', denariseup: 'Dena Rise Up', altadenarising: 'Altadena Rising', projectpassion: 'Project Passion', denaheals: 'Dena Heals', lavoice: 'LA Voice', towncouncil: 'Altadena Town Council', chamber: 'Chamber of Commerce', rotary: 'Rotary', altadenagreen: 'Altadena Green', altadenawild: 'AltadenaWILD', collective: 'Altadena Collective', dayone: 'Day One', efc: 'Eaton Fire Collaborative', colab: 'Altadena CoLab', heritage: 'Altadena Heritage', efru: 'Eaton Fire Residents United', fairoaks: 'Fair Oaks cross-block group', elders: 'Elder gathering', county: 'the County website', newsletter: 'the Altagether newsletter', discord: 'Discord', instagram: 'Instagram', flyer: 'a printed flyer' };
   function viaLabel() { var v = viaTag(); return v === 'captain' ? 'Your captain&rsquo;s link' : v === 'open' ? 'The open link' : 'Link from ' + (PARTNER_NAMES[v] || v); }
   function zoneHint() { return '<p class="small" style="margin-top:6px">' + (ZONES[linkZone()] ? 'Your captain&rsquo;s link fills this in. If you came another way, pick the zone you live in, or lived in before the fire.' : 'Pick the zone you live in, or lived in before the fire. Not sure? Choose &ldquo;Not sure which zone&rdquo; and give us your cross streets.') + '</p>'; }
   function zoneValue() { if (state.zone === 'unsure') return state.cross.trim() ? 'unsure: ' + state.cross.trim() : ''; return state.zone || (ZONES[linkZone()] ? linkZone() : ''); }
@@ -613,7 +613,7 @@
     "97": "Zone 97 · Lincoln Ave @ Mountain View",
     "99": "Zone 99 · Midlothian Drive (New York to Midwick)",
     "103": "Zone 103",
-    "104": "Zone 104 · Boston btwn MarVista & Holliston",
+    "104": "Zone 104 · Boston b/t Mar Vista & Hill",
     "106": "Zone 106 · Wapello St",
     "108": "Zone 108 · Devirian Pl, West of Lincoln",
     "109": "Zone 109",
@@ -854,7 +854,7 @@
     h += '<section><h2>What neighbors wrote</h2><p class="small">Comments from ' + (pooled ? 'these zones' : 'your block') + ', read by two people and grouped into themes, with one line in our words. No comment is quoted and no one is named.</p>' +
       '<div class="tscroll"><table class="themes"><colgroup><col style="width:32%"><col><col style="width:88px"></colgroup><thead><tr><th>Theme</th><th>What people said</th><th class="num">Comments</th></tr></thead><tbody>' +
       COMMENT_THEMES.slice(0, 4).map(function (g, gi) { var items = g[1].slice(0, (zi + gi) % 2 + 1); return '<tr class="grp"><td colspan="3">' + g[0] + '</td></tr>' + items.map(function (r, ri) { var c = Math.max(1, Math.round(r[2] * share * (ri ? .7 : 1.1))); return '<tr><td><b>' + r[0] + '</b></td><td>' + r[1] + '</td><td class="num">' + c + '</td></tr>'; }).join(''); }).join('') + '</tbody></table></div></section>' +
-      '<section><h2>Next steps</h2><div class="rows"><div class="row"><b>Oct 15</b><span>These results went to the County&rsquo;s focus group, zone by zone.</span></div><div class="row"><b>Jan 2027</b><span>The group finishes its recommendations.</span></div><div class="row"><b>2027</b><span>The County writes its draft.</span></div></div><p style="margin-top:10px">The County has not responded yet. When it does, we will post it here.</p></section>' +
+      '<section><h2>Next steps</h2><div class="rows"><div class="row"><b>Oct 15</b><span>These results went to the County&rsquo;s focus group, zone by zone.</span></div><div class="row"><b>Early next year</b><span>The group finishes its recommendations.</span></div><div class="row"><b>Later</b><span>The County writes its draft.</span></div></div><p style="margin-top:10px">The County has not responded yet. When it does, we will post it here.</p></section>' +
       '<section><h2>How your answer was handled</h2><p>This page shows counts only. Nobody&rsquo;s individual answer appears here or anywhere else. The County received counts by zone, never names. Your email or number has been deleted.</p></section>' +
       '<section><h2>Next: Round 2</h2><p>The rest of Altadena&rsquo;s building rules open for your input on October 29.</p></section>';
     return h;
