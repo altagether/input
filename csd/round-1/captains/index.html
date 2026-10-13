@@ -669,7 +669,21 @@
   function captainMsg(url) { var d = document.createElement('div'); d.innerHTML = captainMsgHtml(url).replace(/<br>/g, '\n'); return d.textContent; }
 
 
+  // Round 1 closed on Oct 12 at midnight. The page for the open round is kept below as captainOpen().
   function captain() {
+    return '<div class="head"><img class="logo" src="altagether-logo.png" alt="Altagether" width="512" height="150"><div class="kicker">For block captains &middot; Round 1 of 3</div><h1>Round 1 is closed. Thank you, captains!</h1></div>' +
+      '<section><p class="lead"><b>619 neighbors answered</b> between October 3 and 12, from 75 zones and named areas. <b>452 of those answers came through captain links.</b> You are why Altadena&rsquo;s voice in this review is so strong.</p>' +
+      '<p>Nothing has been decided. Every answer, for and against, goes to LA County Planning&rsquo;s Altadena focus group, zone by zone. Today&rsquo;s rules stay in effect until the County formally adopts new ones.</p></section>' +
+      '<section><h2>What&rsquo;s next for you</h2><ol class="steps"><li><b>Pass on the results</b> when we send them, after October 15.</li><li><b>Tell your block about the County&rsquo;s listening session</b> on October 17. It is open to everyone.</li><li><b>Watch for your Round 2 link</b> before October 29.</li></ol>' +
+      '<div class="panel" style="margin-top:12px">If a neighbor missed Round 1: the survey is closed, but they can come to the listening session on October 17, and Round 2 opens October 29.</div></section>' +
+      '<section><h2>Round 1 dates</h2><p class="small">Round 1 of 3 &middot; rules for single-family homes</p><div class="rows"><div class="row"><b>Oct 3</b><span>Round 1 opened.</span></div><div class="row"><b>Oct 12</b><span>Round 1 closed, with 619 answers.</span></div><div class="row"><b>Oct 15</b><span>Round 1 results go to the County&rsquo;s focus group. You get your zone&rsquo;s page to pass on.</span></div><div class="row"><b>Oct 17</b><span>LA County Planning holds an Altadena listening session on land use and zoning, 9:30 to 12:30 at The Collaboratory, 540 W Woodbury Rd. Worth telling your block about. <a href="https://planning.lacounty.gov/blog/altadena-listening-session/" target="_blank" rel="noopener">Details</a></span></div></div>' +
+      '<h2 style="margin-top:22px">Coming next</h2><div class="rows"><div class="row"><b>Oct 29</b><span><b>Round 2</b> opens: the rest of Altadena&rsquo;s building rules. Closes before Nov 12.</span></div><div class="row"><b>Dec 3</b><span><b>Round 3</b> opens: rules for rebuilding after a disaster. Closes before Dec 17.</span></div></div><p class="small" style="margin-top:8px">You will get a new link for each round.</p></section>' +
+      '<section><h2>The rules themselves</h2><p>For you, and for any neighbor who wants the legal text. Each opens in a new tab.</p>' + codeList(ALLCODE) + '</section>' +
+      '<section><h2>When someone asks who sees the answers</h2><ul class="plain"><li>Answers go to Altagether. Captains don&rsquo;t see them.</li><li>The County gets counts by zone, never names.</li><li>Emails and phone numbers are kept separately and deleted after the results are sent back.</li></ul></section>' +
+      '<section><h2>Questions</h2><p>Email <a href="mailto:input@altagether.org">input@altagether.org</a>.</p></section>';
+  }
+
+  function captainOpen() {
     var picked = !!czone, url = BASE + '?zone=' + czone, qr = picked ? qrSvg(url) : '';
     return '<div class="head"><img class="logo" src="altagether-logo.png" alt="Altagether" width="512" height="150"><div class="kicker">For block captains &middot; Round 1 of 3</div><h1>Help your block weigh in on Altadena&rsquo;s building rules</h1></div>' +
       '<section><p class="lead">LA County Planning is reviewing the building rules that are particular to Altadena (the Community Standards District, or CSD). Nothing has been decided. The County created a committee with representatives from Altadena organizations to do this work, and Altagether has a seat at the table. We want to use this opportunity to connect with as many neighbors as possible.</p>' +
