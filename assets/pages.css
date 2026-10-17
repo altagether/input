@@ -1,0 +1,100 @@
+/* Shared layout for the input site's pages (landing, closed Round 1, report). Loaded after site.css. */
+main { padding-bottom:24px; }
+.col, .survey { max-width:760px; }
+.head { padding:22px 0 18px; border-bottom:1px solid var(--line); }
+.head .lead { max-width:760px; }
+
+/* round cards */
+.rounds { display:grid; gap:12px; margin-top:14px; }
+.round { border:1px solid var(--line); border-radius:10px; padding:14px 16px; background:#fff; }
+.round.dim { background:transparent; }
+.rtop { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:4px 12px; }
+.rname { font-weight:700; font-size:18px; }
+.status { font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; border-radius:999px; padding:2px 10px; background:#e7efe9; color:var(--agree); }
+.status.closed { background:var(--sand); color:var(--soft); }
+.round p { margin:6px 0 0; }
+.round .next { margin-top:12px; gap:8px; }
+
+/* download cards */
+.dl { display:grid; gap:12px; margin:22px 0 8px; max-width:760px; }
+.file { display:flex; align-items:center; justify-content:space-between; gap:14px; border:1px solid var(--line); border-radius:10px; background:#fff; padding:14px 16px; text-decoration:none; }
+.file:hover { border-color:var(--ink); }
+.file b { display:block; font-size:19px; }
+.file span { font-size:15px; color:var(--soft); }
+.file .go { flex:none; height:44px; display:inline-flex; align-items:center; padding:0 16px; border-radius:8px; background:var(--ink); color:var(--paper); font-weight:700; font-size:16px; }
+.file .go .ic { margin-right:8px; }
+.file.alt .go { background:#fff; color:var(--ink); border:1px solid var(--ink); }
+@media (max-width:560px) { .file { flex-direction:column; align-items:flex-start; } }
+
+/* boxes and lists */
+.about { background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 16px; max-width:760px; }
+.about p { margin:0 0 8px; } .about p:last-child { margin:0; }
+.note { max-width:760px; }
+main ul { padding-left:20px; margin:0 0 12px; color:var(--prose); max-width:760px; } main li { margin:0 0 6px; }
+.rows { max-width:760px; }
+.res { display:block; background:var(--ink); color:var(--paper); text-decoration:none; border-radius:10px; padding:14px 16px; margin-top:18px; font-weight:700; font-size:18px; max-width:760px; }
+.res span { display:block; font-weight:400; font-size:16px; opacity:.85; margin-top:2px; }
+
+/* header: logo left, language right, nothing else */
+.nav .brand { border-right:none; padding-right:0; margin-right:0; }
+.nav .lang { margin-left:auto; }
+
+/* cards with an action: text on the left, button on the right (same as the download cards) */
+.round.act { display:flex; align-items:center; justify-content:space-between; gap:16px; max-width:760px; }
+.round.act > div { min-width:0; flex:1; }
+.round.act .rtop { justify-content:flex-start; gap:4px 12px; }
+.round.act .btn { flex:none; white-space:nowrap; }
+.round.act p { margin:4px 0 0; }
+@media (max-width:560px) { .round.act { flex-direction:column; align-items:flex-start; } }
+
+/* status tag above the round title, on every round card */
+.rtop, .round.act .rtop { flex-direction:column-reverse; align-items:flex-start; justify-content:flex-start; gap:6px; }
+.rtop .status { font-size:13px; padding:2px 9px; }
+
+/* back to the landing page */
+.back { display:inline-flex; align-items:center; gap:8px; margin:18px 0 0; font-size:16px; font-weight:600; text-decoration:none; color:var(--ink); }
+.back span { font-size:20px; line-height:1; }
+.back:hover { text-decoration:underline; }
+.back + .head { padding-top:10px; }
+/* the four rules on the Round 1 card */
+.rules { margin:10px 0 0; padding-left:18px; font-size:16px; color:var(--prose); }
+.rules li { margin:0 0 4px; }
+.rnote { margin-top:6px !important; font-size:14px; }
+.round.act { align-items:flex-start; }
+.round.act .btn { margin-top:2px; }
+
+/* links to the rules in the County code */
+ul.codes { list-style:none; padding:0; margin:10px 0 0; max-width:760px; border-top:1px solid var(--line); }
+ul.codes li { padding:10px 0; border-bottom:1px solid var(--line); margin:0; }
+ul.codes a { font-weight:600; }
+ul.codes span { display:block; font-size:15px; color:var(--soft); margin-top:2px; }
+.fnote { font-size:14px; margin-top:8px; }
+
+/* "What Round 1 was for": labeled rows */
+.facts { padding:4px 18px 6px; }
+.facts .ftitle { font-family:var(--figure); font-weight:600; font-size:21px; margin:12px 0 4px; }
+.frow { display:grid; grid-template-columns:170px 1fr; gap:4px 18px; padding:11px 0; border-top:1px solid var(--line); }
+.frow:first-of-type { border-top:none; }
+.frow b { font-size:15px; letter-spacing:.02em; color:var(--ink); }
+.frow span { color:var(--prose); }
+@media (max-width:560px) { .frow { grid-template-columns:1fr; } }
+.frow b { padding-top:3px; }
+.facts:not(:has(.ftitle)) { padding-top:6px; }
+.survey .facts { margin:4px 0 6px; }
+
+/* Round 1 card: stacked download buttons on the right */
+.dlcol { flex:none; display:flex; flex-direction:column; gap:8px; align-items:stretch; min-width:210px; }
+.dlcol .btn { justify-content:flex-start; gap:8px; }
+.dlcol .btn .ic { flex:none; }
+.dlmeta { font-size:13px; color:var(--soft); text-align:center; }
+@media (max-width:560px) { .dlcol { width:100%; } }
+.dlcol { width:230px; min-width:0; }
+.dlcol .btn { font-size:16px; padding:0 14px; }
+.round.act > .dlcol { flex:0 0 230px; }
+@media (max-width:560px) { .round.act > .dlcol { flex:none; width:100%; } }
+
+/* Round 1 card: downloads side by side at the bottom */
+.dlrow { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+.dlrow .btn { gap:8px; }
+.join { margin-top:14px; }
+.rounds + .join { margin-top:14px; }
