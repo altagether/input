@@ -118,3 +118,6 @@ a.nw { white-space:nowrap; }
   main { padding-left:18px; padding-right:18px; }
   .nav .in { padding-left:18px; padding-right:18px; }
 }
+.rlead { margin:12px 0 0; font-weight:600; color:var(--ink); }
+.rlead + .rules { margin-top:6px; }
+@media (max-width:600px) { .rlead { font-size:18px; } }
