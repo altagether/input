@@ -98,3 +98,23 @@ ul.codes span { display:block; font-size:15px; color:var(--soft); margin-top:2px
 .dlrow .btn { gap:8px; }
 .join { margin-top:14px; }
 .rounds + .join { margin-top:14px; }
+
+a.nw { white-space:nowrap; }
+/* phones: larger text throughout */
+@media (max-width:600px) {
+  body { font-size:19px; }
+  .lead { font-size:19px; }
+  p, main li, .frow span, .round p, .rules { font-size:18px; }
+  .s, .round p.s, .file span { font-size:17px; }
+  .rnote, .fnote, ul.codes span { font-size:16px !important; }
+  .frow b { font-size:16px; }
+  .rname { font-size:19px; }
+  .kicker { font-size:14px; }
+  .rtop .status { font-size:13.5px; }
+  .disc { font-size:15px; }
+  .disc .in { padding:8px 16px; }
+  .btn { font-size:17px; }
+  footer { font-size:16px; }
+  main { padding-left:18px; padding-right:18px; }
+  .nav .in { padding-left:18px; padding-right:18px; }
+}
